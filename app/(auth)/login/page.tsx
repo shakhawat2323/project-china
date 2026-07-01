@@ -47,7 +47,7 @@ export default function LoginPage() {
       <div className="mb-8 flex flex-col items-center justify-center text-center">
         <div className="relative mb-6 flex h-24 w-24 items-center justify-center overflow-hidden rounded-3xl border border-border bg-card/80 shadow-premium backdrop-blur-md">
           <div className="absolute inset-0 bg-primary/10" />
-          <Image src="/image/chinaproject.png" alt="SysPCB Logo" width={72} height={72} className="relative z-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+          <Image src="/image/chinaproject.png" alt="FT Logo" width={72} height={72} className="relative z-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
         </div>
         <h1 className="text-4xl font-black tracking-tight text-foreground md:text-5xl">
           Sys<span className="premium-gradient-text">PCB</span>

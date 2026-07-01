@@ -133,7 +133,7 @@ export default function SuperAdminSettings() {
             </label>
             <label className="space-y-2">
               <Label>Value</Label>
-              <Textarea value={value} onChange={(event) => setValue(event.target.value)} placeholder='Example: "SysPCB" or {"enabled":true}' rows={7} />
+              <Textarea value={value} onChange={(event) => setValue(event.target.value)} placeholder='Example: "FT" or {"enabled":true}' rows={7} />
             </label>
             <Button onClick={saveSetting} disabled={saving} className="w-full rounded-full">
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}

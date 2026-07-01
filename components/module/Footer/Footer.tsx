@@ -38,7 +38,7 @@ export default function Footer() {
                 <span className="block text-xs font-black uppercase tracking-[0.24em] text-primary">
                   {dictionary.navbar.badge}
                 </span>
-                <span className="block text-xl font-black tracking-tight">SysPCB</span>
+                <span className="block text-xl font-black tracking-tight">FT</span>
               </span>
             </Link>
             <p className="mt-5 text-sm leading-7 text-muted-foreground">

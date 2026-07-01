@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -12,6 +13,7 @@ import {
 import {
   countryOptions,
   defaultLocale,
+  getDictionary,
   sourceDictionary,
   type CountryOption,
   type Dictionary,
@@ -49,6 +51,15 @@ function getStoredCountryCode() {
   return storedCountry?.countryCode ?? defaultCountry.countryCode;
 }
 
+function applyDocumentLocale(locale: Locale) {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  document.documentElement.lang = locale;
+  document.documentElement.dir = locale === "ar" || locale === "ur" ? "rtl" : "ltr";
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [selectedCountryCode, setSelectedCountryCode] =
     useState<CountryOption["countryCode"]>(getStoredCountryCode);
@@ -57,11 +68,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     countryOptions.find(
       (country) => country.countryCode === selectedCountryCode,
     ) ?? defaultCountry;
+  const dictionary = useMemo(
+    () => getDictionary(selectedCountry.locale),
+    [selectedCountry.locale],
+  );
+
+  useEffect(() => {
+    applyDocumentLocale(selectedCountry.locale);
+  }, [selectedCountry.locale]);
 
   const setSelectedCountry = useCallback((country: CountryOption) => {
     setSelectedCountryCode(country.countryCode);
     window.localStorage.setItem(STORAGE_KEY, country.countryCode);
-    document.documentElement.lang = country.locale;
+    applyDocumentLocale(country.locale);
   }, []);
 
   const value = useMemo(
@@ -77,7 +96,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={value}>
-      <DictionaryContext.Provider value={sourceDictionary}>
+      <DictionaryContext.Provider value={dictionary}>
         {children}
       </DictionaryContext.Provider>
     </LanguageContext.Provider>

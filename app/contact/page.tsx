@@ -2,7 +2,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/module/Contact/ContactForm";
 
 export const metadata = {
-  title: "Contact Us - SysPCB",
+  title: "Contact Us - FT",
   description: "Get in touch with our team for inquiries, support, and PCB manufacturing quotes.",
 };
 
@@ -39,7 +39,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground">Email Us</h4>
-                    <p className="mt-1 text-muted-foreground">sales@syspcb.com<br />support@syspcb.com</p>
+                    <p className="mt-1 text-muted-foreground">sales@FT.com<br />support@FT.com</p>
                   </div>
                 </div>
 

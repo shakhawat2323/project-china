@@ -58,9 +58,9 @@ const homepagePages: IPage[] = [
     id: "homepage-about",
     sectionSlug: "homepage",
     pageSlug: "about",
-    title: "About SysPCB",
+    title: "About FT",
     content:
-      "SysPCB provides PCB fabrication and assembly services for prototypes, startups, and production teams.",
+      "FT provides PCB fabrication and assembly services for prototypes, startups, and production teams.",
     images: ["/image/pcb2.png"],
     specifications: {
       stats: [
@@ -112,7 +112,7 @@ const homepagePages: IPage[] = [
       "Reach the team through the contact page. Backend submission APIs have been removed from this build.",
     images: ["/image/pcb4.png"],
     specifications: {
-      email: "sales@syspcb.com",
+      email: "sales@FT.com",
       phone: "+86 123 4567 8901",
     },
     videos: [],

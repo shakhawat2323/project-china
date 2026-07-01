@@ -21,7 +21,7 @@ function slugify(value: string) {
 
 const sectionIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   home: Info,
-  "about-syspcb": Info,
+  "about-FT": Info,
   products: Cpu,
   "pcb-manufacture": Settings,
   "pcb-assembly": Layers,

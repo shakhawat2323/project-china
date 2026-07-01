@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -28,7 +28,7 @@ const sliderImages = [
     alt: "PCB manufacturing showcase 5",
   },
   {
-    src: "/image/pcb6.png",
+    src: "/image/10039.jpeg",
     alt: "PCB manufacturing showcase 6",
   },
 ];
@@ -204,3 +204,4 @@ export default function NavbarSlider() {
     </section>
   );
 }
+

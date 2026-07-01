@@ -23,6 +23,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ProductCard } from "@/app/(commonLayout)/products/ProductCard";
+import { useDictionary } from "@/components/providers/language-provider";
 import type { IProduct } from "@/services/product.service";
 import type { IPage } from "@/services/page.service";
 import GlobalNetworkGlobe from "./GlobalNetworkGlobe";
@@ -168,6 +169,8 @@ function VideoCard({ title, description }: { title: string; description: string 
 }
 
 export default function PremiumWupingHomepage({ products = [] }: { products?: IProduct[]; sections?: IPage[] }) {
+  const dictionary = useDictionary();
+  const sectionCopy = dictionary.sections;
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const activeTestimonial = useMemo(() => testimonials[testimonialIndex], [testimonialIndex]);
 
@@ -232,7 +235,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section bg-background/70">
         <div className="premium-container">
-          <SectionTitle eyebrow="PCB manufacturing services" title="Advanced board fabrication for demanding applications" description="Professional PCB service cards for rigid, flexible, high-frequency, aluminum, rigid-flex, and HDI PCB requirements." />
+          <SectionTitle eyebrow={sectionCopy.products.eyebrow} title={sectionCopy.products.title} description={sectionCopy.products.description} />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {manufacturingServices.map(([title, description], index) => (
               <article key={title} className="group overflow-hidden rounded-lg border border-border bg-card shadow-sm">
@@ -250,7 +253,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section">
         <div className="premium-container">
-          <SectionTitle eyebrow="PCB assembly services" title="From bare board to complete electronics assembly" description="SMT, THT, box build, and turnkey assembly services with real production-line positioning and premium customer experience." />
+          <SectionTitle eyebrow={sectionCopy.assembly.eyebrow} title={sectionCopy.assembly.title} description={sectionCopy.assembly.description} />
           <div className="mt-10 grid gap-5 lg:grid-cols-4">
             {assemblyServices.map(([title, description], index) => (
               <article key={title} className="rounded-lg border border-border bg-card p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-premium">
@@ -265,7 +268,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section bg-background/70">
         <div className="premium-container">
-          <SectionTitle eyebrow="Product showcase" title="Premium products and engineering services" description="A professional product grid with buying actions for PCB products, assembly products, and engineering services." />
+          <SectionTitle eyebrow={sectionCopy.hero.eyebrow} title={sectionCopy.hero.title} description={sectionCopy.hero.description} />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {products.length > 0 ? (
               products.slice(0, 6).map((product) => (
@@ -294,7 +297,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section">
         <div className="premium-container">
-          <SectionTitle eyebrow="Factory facility" title="Modern factory, production machines, and quality lab" description="A premium visual layout for factory images, manufacturing machines, inspection labs, image gallery, and video gallery." />
+          <SectionTitle eyebrow={sectionCopy.factory.eyebrow} title={sectionCopy.factory.title} description={sectionCopy.factory.description} />
           <div className="mt-10 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
             <MediaImage src="/image/pcb2.png" title="PCB production facility" />
             <div className="grid gap-5">
@@ -315,7 +318,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section">
         <div className="premium-container">
-          <SectionTitle eyebrow="Why choose us" title="Built for quality, speed, price, technology, and global delivery" description="Premium feature cards that quickly communicate why customers should trust Wuping Feitian." />
+          <SectionTitle eyebrow={sectionCopy.about.eyebrow} title={sectionCopy.about.title} description={sectionCopy.about.description} />
           <div className="mt-10 grid gap-5 md:grid-cols-5">
             {advantages.map(([title, description, Icon]) => (
               <article key={title as string} className="rounded-lg border border-border bg-card p-5 shadow-sm">
@@ -332,7 +335,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section">
         <div className="premium-container">
-          <SectionTitle eyebrow="Certifications" title="Quality standards that build buyer confidence" description="Certification and quality badges for ISO, RoHS, UL, IPC, and international production expectations." />
+          <SectionTitle eyebrow={sectionCopy.quality.eyebrow} title={sectionCopy.quality.title} description={sectionCopy.quality.description} />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {certifications.map((certification) => (
               <div key={certification} className="rounded-lg border border-border bg-card p-5 text-center shadow-sm">
@@ -346,7 +349,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section bg-background/70">
         <div className="premium-container">
-          <SectionTitle eyebrow="Testimonials" title="Customer reviews and success stories" description="Modern slider-style testimonial section for international customers and manufacturing success stories." />
+          <SectionTitle eyebrow={sectionCopy.industries.eyebrow} title={sectionCopy.industries.title} description={sectionCopy.industries.description} />
           <div className="mx-auto mt-10 max-w-4xl rounded-lg border border-border bg-card p-8 text-center shadow-premium">
             <Quote className="mx-auto h-10 w-10 text-primary" />
             <p className="mt-6 text-xl font-bold leading-9 text-foreground">&ldquo;{activeTestimonial.text}&rdquo;</p>
@@ -369,7 +372,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section">
         <div className="premium-container">
-          <SectionTitle eyebrow="Manufacturing process" title="Animated production timeline from quote to delivery" description="A premium timeline that explains the full PCB manufacturing journey." />
+          <SectionTitle eyebrow={sectionCopy.capability.eyebrow} title={sectionCopy.capability.title} description={sectionCopy.capability.description} />
           <div className="mt-10 grid gap-4 md:grid-cols-7">
             {processSteps.map((step, index) => (
               <div key={step} className="rounded-lg border border-border bg-card p-5 shadow-sm">
@@ -383,7 +386,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section bg-background/70">
         <div className="premium-container">
-          <SectionTitle eyebrow="News and blog" title="PCB industry news and manufacturing tips" description="Latest articles with images and read-more buttons for SEO and buyer education." />
+          <SectionTitle eyebrow={dictionary.navbar.homeHighlights[1]?.label ?? "News"} title={dictionary.navbar.homeHighlights[1]?.description ?? "PCB industry news and manufacturing tips"} description={sectionCopy.products.description} />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {articles.map(([title, description], index) => (
               <article key={title} className="overflow-hidden rounded-lg border border-border bg-card shadow-sm">
@@ -401,7 +404,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
       <section className="premium-section">
         <div className="premium-container">
-          <SectionTitle eyebrow="Video center" title="Premium video gallery for factory and production storytelling" description="Factory tour, SMT assembly, PCB manufacturing, and company introduction video cards." />
+          <SectionTitle eyebrow={sectionCopy.factory.videoTitle} title={sectionCopy.factory.title} description={sectionCopy.factory.description} />
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {videos.map(([title, description]) => (
               <VideoCard key={title} title={title} description={description} />
@@ -415,11 +418,11 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-100">
               <Rocket className="h-4 w-4" />
-              Contact and instant quote
+              {sectionCopy.contact.eyebrow}
             </div>
-            <h2 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl">Start your PCB project with Wuping Feitian</h2>
+            <h2 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl">{sectionCopy.contact.title}</h2>
             <p className="mt-4 text-base leading-7 text-slate-300">
-              Send your requirement, contact sales, or upload Gerber files for fast review and professional quotation.
+              {sectionCopy.contact.description}
             </p>
             <div className="mt-8 space-y-4 text-sm font-bold text-slate-200">
               <p className="flex items-center gap-3"><Mail className="h-5 w-5 text-cyan-300" /> sales@wupingfeitian.com</p>
@@ -446,7 +449,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
                 <UploadCloud className="h-4 w-4" /> Upload Gerber
               </button>
               <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-black text-white shadow-glow">
-                Get Instant Quote <Zap className="h-4 w-4" />
+                {sectionCopy.hero.quoteBtn} <Zap className="h-4 w-4" />
               </button>
             </div>
           </form>
@@ -455,6 +458,8 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
     </main>
   );
 }
+
+
 
 
 
