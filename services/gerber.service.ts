@@ -14,6 +14,33 @@ export const GerberService = {
     });
   },
 
+  uploadPublicInquiry: (
+    files: File[],
+    payload?: {
+      fullName?: string;
+      email?: string;
+      companyName?: string;
+      phone?: string;
+      boardType?: string;
+      description?: string;
+    },
+  ) => {
+    const formData = new FormData();
+    files.forEach((file) => formData.append("files", file));
+
+    Object.entries(payload || {}).forEach(([key, value]) => {
+      if (value) formData.append(key, value);
+    });
+
+    return apiRequest<{
+      inquiry: { id: string; createdAt: string };
+      files: { fileName: string; fileUrl: string; fileSize: number }[];
+    }>("/gerber-files/public-upload", {
+      method: "POST",
+      body: formData,
+    });
+  },
+
   getMyFiles: () => apiRequest("/gerber-files/my"),
 
   getAllFiles: () => apiRequest("/gerber-files"),

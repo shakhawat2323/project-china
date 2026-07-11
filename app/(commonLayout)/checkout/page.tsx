@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -35,35 +35,35 @@ function validateCheckoutForm(form: CheckoutForm, paymentMethod: PaymentMethod, 
   const errors: FormErrors = {};
 
   if (!form.fullName.trim() || form.fullName.trim().length < 3) {
-    errors.fullName = "Full name কমপক্ষে 3 character হতে হবে।";
+    errors.fullName = "Full name à¦•à¦®à¦ªà¦•à§à¦·à§‡ 3 character à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤";
   }
 
   if (!emailPattern.test(form.email.trim())) {
-    errors.email = "Valid email address দিন।";
+    errors.email = "Valid email address à¦¦à¦¿à¦¨à¥¤";
   }
 
   if (!phonePattern.test(form.phone.trim())) {
-    errors.phone = "Valid phone number দিন।";
+    errors.phone = "Valid phone number à¦¦à¦¿à¦¨à¥¤";
   }
 
   if (!form.address.trim() || form.address.trim().length < 10) {
-    errors.address = "Shipping address কমপক্ষে 10 character হতে হবে।";
+    errors.address = "Shipping address à¦•à¦®à¦ªà¦•à§à¦·à§‡ 10 character à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤";
   }
 
   if (!form.city.trim() || form.city.trim().length < 2) {
-    errors.city = "City name required।";
+    errors.city = "City name requiredà¥¤";
   }
 
   if (form.postalCode.trim() && form.postalCode.trim().length < 3) {
-    errors.postalCode = "Postal code valid হতে হবে।";
+    errors.postalCode = "Postal code valid à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤";
   }
 
   if (!["stripe", "paypal"].includes(paymentMethod)) {
-    errors.paymentMethod = "Payment method select করুন।";
+    errors.paymentMethod = "Payment method select à¦•à¦°à§à¦¨à¥¤";
   }
 
   if (itemCount < 1) {
-    errors.cart = "Cart empty। Product add করুন।";
+    errors.cart = "Cart emptyà¥¤ Product add à¦•à¦°à§à¦¨à¥¤";
   }
 
   return errors;
@@ -292,3 +292,4 @@ export default function CheckoutPage() {
     </main>
   );
 }
+

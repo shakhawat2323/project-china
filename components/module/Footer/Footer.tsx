@@ -38,7 +38,7 @@ export default function Footer() {
                 <span className="block text-xs font-black uppercase tracking-[0.24em] text-primary">
                   {dictionary.navbar.badge}
                 </span>
-                <span className="block text-xl font-black tracking-tight">FT</span>
+                <span className="block text-xl font-black tracking-tight">FT PCB</span>
               </span>
             </Link>
             <p className="mt-5 text-sm leading-7 text-muted-foreground">
@@ -48,7 +48,11 @@ export default function Footer() {
             <div className="mt-7 grid gap-3 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" />
-                <span className="text-muted-foreground">{footer.addressVal}</span>
+                <span className="grid gap-1 text-muted-foreground">
+                  {footer.addressVal.split(" | ").map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </span>
               </div>
               <a href={`mailto:${footer.emailVal}`} className="flex items-center gap-3 text-muted-foreground transition hover:text-primary">
                 <Mail className="h-4 w-4 text-primary" />

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { Filter, Package, Search, SlidersHorizontal } from "lucide-react";
@@ -146,3 +146,4 @@ export function ProductCatalogClient({
     </section>
   );
 }
+

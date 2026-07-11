@@ -78,9 +78,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [selectedCountry.locale]);
 
   const setSelectedCountry = useCallback((country: CountryOption) => {
-    setSelectedCountryCode(country.countryCode);
     window.localStorage.setItem(STORAGE_KEY, country.countryCode);
     applyDocumentLocale(country.locale);
+    setSelectedCountryCode(country.countryCode);
+
+    // Re-render from the clean English source before applying the selected language.
+    // This avoids stale translated DOM text when switching between languages.
+    window.location.reload();
   }, []);
 
   const value = useMemo(

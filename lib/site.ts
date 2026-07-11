@@ -1,10 +1,10 @@
 export const siteConfig = {
-  name: "FT",
+  name: "FT PCB",
   legalName: "Wuping Feitian Electronic Technology Company Limited",
-  url: "https://www.FT.com",
+  url: "https://www.ftpcb.com",
   description:
     "Precision PCB and PCBA manufacturing services for prototype, low-volume, and high-volume electronics production.",
   defaultOgImage: "/image/chinaproject.png",
-  contactEmail: "sales@FT.com",
-  address: "Wuping County, Longyan City, Fujian Province, China",
+  contactEmail: "sales@ftpcb.com",
+  address: "Factory: Yanqian Industrial Cluster, Wuping County, Longyan City, Fujian Province, China | Shenzhen: Fenghuang Zhi Gu, Country Garden, Tie Zai Road, Xixiang Street, Baoan District, Shenzhen, China",
 };

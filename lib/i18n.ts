@@ -162,7 +162,7 @@ export type Dictionary = {
   };
 };
 
-export const defaultLocale: Locale = "en";
+export const defaultLocale = "en" as const;
 
 export const countryOptions: CountryOption[] = [
   {
@@ -326,7 +326,7 @@ export const sourceDictionary: Dictionary = {
         items: ["Welcome", "News & Updates", "Careers"],
       },
       {
-        title: "About FT",
+        title: "About FT PCB",
         items: [
           "Company Profile",
           "Our Team",
@@ -540,11 +540,11 @@ export const sourceDictionary: Dictionary = {
     capabilitiesTitle: "Capabilities",
     contactTitle: "Contact Us",
     addressLabel: "Address",
-    addressVal: "Wuping County, Longyan City, Fujian Province, China",
+    addressVal: "Factory: Yanqian Industrial Cluster, Wuping County, Longyan City, Fujian Province, China | Shenzhen: Fenghuang Zhi Gu, Country Garden, Tie Zai Road, Xixiang Street, Baoan District, Shenzhen, China",
     phoneLabel: "Phone",
-    phoneVal: "+86 123 4567 8901",
+    phoneVal: "+86 189 2742 6587",
     emailLabel: "Email",
-    emailVal: "sales@FT.com",
+    emailVal: "sales@ftpcb.com",
     copyright: "Â© 2026 Wuping Feitian Electronic Technology Company Limited. All rights reserved.",
   },
 };
@@ -597,7 +597,7 @@ function mergeDictionary<T extends Record<string, unknown>>(base: T, override?: 
 const localizedNavItems: Record<Exclude<Locale, "en">, NavItem[]> = {
   zh: [
     { title: "é¦–é¡µ", items: ["æ¬¢è¿Ž", "æ–°é—»åŠ¨æ€", "æ‹›è˜"] },
-    { title: "å…³äºŽ FT", items: ["å…¬å¸ç®€ä»‹", "å›¢é˜Ÿ", "ä¼˜åŠ¿", "æœåŠ¡", "ä¸ºä»€ä¹ˆé€‰æ‹©æˆ‘ä»¬", "å®¢æˆ·è¯„ä»·", "è¡Œä¸šåº”ç”¨", "éšç§æ”¿ç­–", "PCB åšå®¢"] },
+    { title: "å…³äºŽ FT PCB", items: ["å…¬å¸ç®€ä»‹", "å›¢é˜Ÿ", "ä¼˜åŠ¿", "æœåŠ¡", "ä¸ºä»€ä¹ˆé€‰æ‹©æˆ‘ä»¬", "å®¢æˆ·è¯„ä»·", "è¡Œä¸šåº”ç”¨", "éšç§æ”¿ç­–", "PCB åšå®¢"] },
     { title: "äº§å“", items: ["PCB äº§å“", "PCBA äº§å“"] },
     { title: "PCB åˆ¶é€ ", items: ["æ¦‚è§ˆ", "è®¾å¤‡", "ææ–™", "é˜»æŠ— PCB", "æµ‹è¯•", "æ ·å“", "å¸¸è§é—®é¢˜"] },
     { title: "PCB ç»„è£…", items: ["æ¦‚è§ˆ", "è®¾å¤‡", "æ ·å“ç»„è£…", "å°æ‰¹é‡", "å¤§æ‰¹é‡", "å¿«é€Ÿäº¤ä»˜", "å…¨ turnkey", "éƒ¨åˆ† turnkey", "å¸¸è§é—®é¢˜"] },
@@ -607,7 +607,7 @@ const localizedNavItems: Record<Exclude<Locale, "en">, NavItem[]> = {
   ],
   bn: [
     { title: "à¦¹à§‹à¦®", items: ["à¦¸à§à¦¬à¦¾à¦—à¦¤à¦®", "à¦–à¦¬à¦° à¦“ à¦†à¦ªà¦¡à§‡à¦Ÿ", "à¦•à§à¦¯à¦¾à¦°à¦¿à¦¯à¦¼à¦¾à¦°"] },
-    { title: "FT à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡", items: ["à¦•à§‹à¦®à§à¦ªà¦¾à¦¨à¦¿ à¦ªà§à¦°à§‹à¦«à¦¾à¦‡à¦²", "à¦†à¦®à¦¾à¦¦à§‡à¦° à¦Ÿà¦¿à¦®", "à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¸à§à¦¬à¦¿à¦§à¦¾", "à¦¸à¦¾à¦°à§à¦­à¦¿à¦¸", "à¦•à§‡à¦¨ à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¬à§‡à¦›à§‡ à¦¨à§‡à¦¬à§‡à¦¨", "à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦°à¦¿à¦­à¦¿à¦‰", "à¦‡à¦¨à§à¦¡à¦¾à¦¸à§à¦Ÿà§à¦°à¦¿", "à¦ªà§à¦°à¦¾à¦‡à¦­à§‡à¦¸à¦¿ à¦ªà¦²à¦¿à¦¸à¦¿", "PCB à¦¬à§à¦²à¦—"] },
+    { title: "FT PCB à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡", items: ["à¦•à§‹à¦®à§à¦ªà¦¾à¦¨à¦¿ à¦ªà§à¦°à§‹à¦«à¦¾à¦‡à¦²", "à¦†à¦®à¦¾à¦¦à§‡à¦° à¦Ÿà¦¿à¦®", "à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¸à§à¦¬à¦¿à¦§à¦¾", "à¦¸à¦¾à¦°à§à¦­à¦¿à¦¸", "à¦•à§‡à¦¨ à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¬à§‡à¦›à§‡ à¦¨à§‡à¦¬à§‡à¦¨", "à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦°à¦¿à¦­à¦¿à¦‰", "à¦‡à¦¨à§à¦¡à¦¾à¦¸à§à¦Ÿà§à¦°à¦¿", "à¦ªà§à¦°à¦¾à¦‡à¦­à§‡à¦¸à¦¿ à¦ªà¦²à¦¿à¦¸à¦¿", "PCB à¦¬à§à¦²à¦—"] },
     { title: "à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿà¦¸", items: ["PCB à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ", "PCBA à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ"] },
     { title: "PCB à¦®à§à¦¯à¦¾à¦¨à§à¦«à§à¦¯à¦¾à¦•à¦šà¦¾à¦°", items: ["à¦“à¦­à¦¾à¦°à¦­à¦¿à¦‰", "à¦‡à¦•à§à¦‡à¦ªà¦®à§‡à¦¨à§à¦Ÿ", "à¦®à§à¦¯à¦¾à¦Ÿà§‡à¦°à¦¿à¦¯à¦¼à¦¾à¦²", "à¦‡à¦®à§à¦ªà¦¿à¦¡à§‡à¦¨à§à¦¸ PCB", "à¦Ÿà§‡à¦¸à§à¦Ÿà¦¿à¦‚", "à¦ªà§à¦°à§‹à¦Ÿà§‹à¦Ÿà¦¾à¦‡à¦ª", "FAQ"] },
     { title: "PCB à¦…à§à¦¯à¦¾à¦¸à§‡à¦®à§à¦¬à¦²à¦¿", items: ["à¦“à¦­à¦¾à¦°à¦­à¦¿à¦‰", "à¦‡à¦•à§à¦‡à¦ªà¦®à§‡à¦¨à§à¦Ÿ", "à¦ªà§à¦°à§‹à¦Ÿà§‹à¦Ÿà¦¾à¦‡à¦ª à¦…à§à¦¯à¦¾à¦¸à§‡à¦®à§à¦¬à¦²à¦¿", "à¦²à§‹ à¦­à¦²à¦¿à¦‰à¦®", "à¦¹à¦¾à¦‡ à¦­à¦²à¦¿à¦‰à¦®", "à¦«à¦¾à¦¸à§à¦Ÿ à¦Ÿà¦¾à¦°à§à¦¨", "à¦Ÿà¦¾à¦°à§à¦¨à¦•à¦¿", "à¦ªà¦¾à¦°à§à¦¶à¦¿à¦¯à¦¼à¦¾à¦² à¦Ÿà¦¾à¦°à§à¦¨à¦•à¦¿", "FAQ"] },
@@ -617,7 +617,7 @@ const localizedNavItems: Record<Exclude<Locale, "en">, NavItem[]> = {
   ],
   de: [
     { title: "Startseite", items: ["Willkommen", "Neuigkeiten", "Karriere"] },
-    { title: "Ãœber FT", items: ["Unternehmensprofil", "Team", "Vorteile", "Service", "Warum wir", "Referenzen", "Branchen", "Datenschutz", "PCB Blog"] },
+    { title: "Ãœber FT PCB", items: ["Unternehmensprofil", "Team", "Vorteile", "Service", "Warum wir", "Referenzen", "Branchen", "Datenschutz", "PCB Blog"] },
     { title: "Produkte", items: ["PCB Produkte", "PCBA Produkte"] },
     { title: "PCB Fertigung", items: ["Ãœberblick", "AusrÃ¼stung", "Material", "Impedanz PCB", "PrÃ¼fung", "Prototyp", "FAQ"] },
     { title: "PCB Montage", items: ["Ãœberblick", "AusrÃ¼stung", "Prototypenmontage", "Kleinserie", "GroÃŸserie", "Express", "Turnkey", "Teil-Turnkey", "FAQ"] },
@@ -627,7 +627,7 @@ const localizedNavItems: Record<Exclude<Locale, "en">, NavItem[]> = {
   ],
   ja: [
     { title: "ãƒ›ãƒ¼ãƒ ", items: ["ã‚ˆã†ã“ã", "ãƒ‹ãƒ¥ãƒ¼ã‚¹", "æŽ¡ç”¨æƒ…å ±"] },
-    { title: "FT ã«ã¤ã„ã¦", items: ["ä¼šç¤¾æ¦‚è¦", "ãƒãƒ¼ãƒ ", "å¼·ã¿", "ã‚µãƒ¼ãƒ“ã‚¹", "é¸ã°ã‚Œã‚‹ç†ç”±", "ãŠå®¢æ§˜ã®å£°", "æ¥­ç•Œ", "ãƒ—ãƒ©ã‚¤ãƒã‚·ãƒ¼", "PCBãƒ–ãƒ­ã‚°"] },
+    { title: "FT PCB ã«ã¤ã„ã¦", items: ["ä¼šç¤¾æ¦‚è¦", "ãƒãƒ¼ãƒ ", "å¼·ã¿", "ã‚µãƒ¼ãƒ“ã‚¹", "é¸ã°ã‚Œã‚‹ç†ç”±", "ãŠå®¢æ§˜ã®å£°", "æ¥­ç•Œ", "ãƒ—ãƒ©ã‚¤ãƒã‚·ãƒ¼", "PCBãƒ–ãƒ­ã‚°"] },
     { title: "è£½å“", items: ["PCBè£½å“", "PCBAè£½å“"] },
     { title: "PCBè£½é€ ", items: ["æ¦‚è¦", "è¨­å‚™", "ææ–™", "ã‚¤ãƒ³ãƒ”ãƒ¼ãƒ€ãƒ³ã‚¹PCB", "æ¤œæŸ»", "è©¦ä½œ", "FAQ"] },
     { title: "PCBå®Ÿè£…", items: ["æ¦‚è¦", "è¨­å‚™", "è©¦ä½œå®Ÿè£…", "å°ãƒ­ãƒƒãƒˆ", "é‡ç”£", "çŸ­ç´æœŸ", "ã‚¿ãƒ¼ãƒ³ã‚­ãƒ¼", "éƒ¨åˆ†ã‚¿ãƒ¼ãƒ³ã‚­ãƒ¼", "FAQ"] },
@@ -637,7 +637,7 @@ const localizedNavItems: Record<Exclude<Locale, "en">, NavItem[]> = {
   ],
   ko: [
     { title: "í™ˆ", items: ["í™˜ì˜", "ë‰´ìŠ¤", "ì±„ìš©"] },
-    { title: "FT ì†Œê°œ", items: ["íšŒì‚¬ ì†Œê°œ", "íŒ€", "ìž¥ì ", "ì„œë¹„ìŠ¤", "ì„ íƒ ì´ìœ ", "ê³ ê° í›„ê¸°", "ì‚°ì—…", "ê°œì¸ì •ë³´", "PCB ë¸”ë¡œê·¸"] },
+    { title: "FT PCB ì†Œê°œ", items: ["íšŒì‚¬ ì†Œê°œ", "íŒ€", "ìž¥ì ", "ì„œë¹„ìŠ¤", "ì„ íƒ ì´ìœ ", "ê³ ê° í›„ê¸°", "ì‚°ì—…", "ê°œì¸ì •ë³´", "PCB ë¸”ë¡œê·¸"] },
     { title: "ì œí’ˆ", items: ["PCB ì œí’ˆ", "PCBA ì œí’ˆ"] },
     { title: "PCB ì œì¡°", items: ["ê°œìš”", "ìž¥ë¹„", "ì†Œìž¬", "ìž„í”¼ë˜ìŠ¤ PCB", "ê²€ì‚¬", "ì‹œì œí’ˆ", "FAQ"] },
     { title: "PCB ì¡°ë¦½", items: ["ê°œìš”", "ìž¥ë¹„", "ì‹œì œí’ˆ ì¡°ë¦½", "ì†ŒëŸ‰", "ëŒ€ëŸ‰", "ë¹ ë¥¸ ë‚©ê¸°", "í„´í‚¤", "ë¶€ë¶„ í„´í‚¤", "FAQ"] },
@@ -647,7 +647,7 @@ const localizedNavItems: Record<Exclude<Locale, "en">, NavItem[]> = {
   ],
   hi: [
     { title: "à¤¹à¥‹à¤®", items: ["à¤¸à¥à¤µà¤¾à¤—à¤¤", "à¤¸à¤®à¤¾à¤šà¤¾à¤°", "à¤•à¤°à¤¿à¤¯à¤°"] },
-    { title: "FT à¤•à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚", items: ["à¤•à¤‚à¤ªà¤¨à¥€ à¤ªà¥à¤°à¥‹à¤«à¤¾à¤‡à¤²", "à¤Ÿà¥€à¤®", "à¤¹à¤®à¤¾à¤°à¥€ à¤¬à¤¢à¤¼à¤¤", "à¤¸à¥‡à¤µà¤¾", "à¤•à¥à¤¯à¥‹à¤‚ à¤šà¥à¤¨à¥‡à¤‚", "à¤ªà¥à¤°à¤¶à¤‚à¤¸à¤¾à¤ªà¤¤à¥à¤°", "à¤‰à¤¦à¥à¤¯à¥‹à¤—", "à¤—à¥‹à¤ªà¤¨à¥€à¤¯à¤¤à¤¾", "PCB à¤¬à¥à¤²à¥‰à¤—"] },
+    { title: "FT PCB à¤•à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚", items: ["à¤•à¤‚à¤ªà¤¨à¥€ à¤ªà¥à¤°à¥‹à¤«à¤¾à¤‡à¤²", "à¤Ÿà¥€à¤®", "à¤¹à¤®à¤¾à¤°à¥€ à¤¬à¤¢à¤¼à¤¤", "à¤¸à¥‡à¤µà¤¾", "à¤•à¥à¤¯à¥‹à¤‚ à¤šà¥à¤¨à¥‡à¤‚", "à¤ªà¥à¤°à¤¶à¤‚à¤¸à¤¾à¤ªà¤¤à¥à¤°", "à¤‰à¤¦à¥à¤¯à¥‹à¤—", "à¤—à¥‹à¤ªà¤¨à¥€à¤¯à¤¤à¤¾", "PCB à¤¬à¥à¤²à¥‰à¤—"] },
     { title: "à¤‰à¤¤à¥à¤ªà¤¾à¤¦", items: ["PCB à¤‰à¤¤à¥à¤ªà¤¾à¤¦", "PCBA à¤‰à¤¤à¥à¤ªà¤¾à¤¦"] },
     { title: "PCB à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£", items: ["à¤…à¤µà¤²à¥‹à¤•à¤¨", "à¤‰à¤ªà¤•à¤°à¤£", "à¤¸à¤¾à¤®à¤—à¥à¤°à¥€", "à¤‡à¤®à¥à¤ªà¥€à¤¡à¥‡à¤‚à¤¸ PCB", "à¤Ÿà¥‡à¤¸à¥à¤Ÿà¤¿à¤‚à¤—", "à¤ªà¥à¤°à¥‹à¤Ÿà¥‹à¤Ÿà¤¾à¤‡à¤ª", "FAQ"] },
     { title: "PCB à¤…à¤¸à¥‡à¤‚à¤¬à¤²à¥€", items: ["à¤…à¤µà¤²à¥‹à¤•à¤¨", "à¤‰à¤ªà¤•à¤°à¤£", "à¤ªà¥à¤°à¥‹à¤Ÿà¥‹à¤Ÿà¤¾à¤‡à¤ª à¤…à¤¸à¥‡à¤‚à¤¬à¤²à¥€", "à¤²à¥‹ à¤µà¥‰à¤²à¥à¤¯à¥‚à¤®", "à¤¹à¤¾à¤ˆ à¤µà¥‰à¤²à¥à¤¯à¥‚à¤®", "à¤«à¤¾à¤¸à¥à¤Ÿ à¤Ÿà¤°à¥à¤¨", "à¤Ÿà¤°à¥à¤¨à¤•à¥€", "à¤ªà¤¾à¤°à¥à¤¶à¤¿à¤¯à¤² à¤Ÿà¤°à¥à¤¨à¤•à¥€", "FAQ"] },
@@ -737,7 +737,7 @@ const localeOverrides: Record<Exclude<Locale, "en">, PartialDictionary> = {
       factory: { eyebrow: "à¦«à§à¦¯à¦¾à¦•à§à¦Ÿà¦°à¦¿", title: "à¦«à§à¦¯à¦¾à¦•à§à¦Ÿà¦°à¦¿ à¦“ à¦‡à¦•à§à¦‡à¦ªà¦®à§‡à¦¨à§à¦Ÿ à¦­à¦¿à¦œà§à¦¯à§à¦¯à¦¼à¦¾à¦² à¦¶à§‹à¦•à§‡à¦¸", description: "Production scenes, machines, operators à¦à¦¬à¦‚ finished boards à¦¦à§‡à¦–à¦¿à¦¯à¦¼à§‡ buyer trust à¦¤à§ˆà¦°à¦¿ à¦•à¦°à§‡à¥¤", videoTitle: "à¦«à§à¦¯à¦¾à¦•à§à¦Ÿà¦°à¦¿ à¦Ÿà§à¦¯à§à¦° à¦­à¦¿à¦¡à¦¿à¦“" },
       contact: { eyebrow: "à¦•à§‹à¦Ÿà§‡à¦¶à¦¨ à¦°à¦¿à¦•à§‹à¦¯à¦¼à§‡à¦¸à§à¦Ÿ", title: "PCB à¦¬à¦¾ PCBA production à¦¨à¦¿à¦¯à¦¼à§‡ à¦•à¦¥à¦¾ à¦¬à¦²à¦¤à§‡ à¦ªà§à¦°à¦¸à§à¦¤à§à¦¤?", description: "Quote form, sales email, WhatsApp à¦…à¦¥à¦¬à¦¾ file upload workflow à¦à¦–à¦¾à¦¨à§‡ à¦°à¦¾à¦–à¦²à§‡ buyer browsing à¦¥à§‡à¦•à§‡ inquiry à¦¤à§‡ à¦¦à§à¦°à§à¦¤ à¦¯à§‡à¦¤à§‡ à¦ªà¦¾à¦°à§‡à¥¤", salesBtn: "à¦¸à§‡à¦²à¦¸ à¦‡à¦¨à¦•à§‹à¦¯à¦¼à¦¾à¦°à¦¿", supportBtn: "à¦¸à¦¾à¦ªà§‹à¦°à§à¦Ÿ à¦Ÿà¦¿à¦®", videoTitle: "à¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦° à¦•à¦®à¦¿à¦‰à¦¨à¦¿à¦•à§‡à¦¶à¦¨ à¦­à¦¿à¦¡à¦¿à¦“" },
     },
-    footer: { description: "Prototype, low-volume à¦à¦¬à¦‚ high-volume electronics production à¦à¦° à¦œà¦¨à§à¦¯ precision PCB à¦“ PCBA manufacturing partnerà¥¤", aboutTitle: "à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡", productsTitle: "à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿà¦¸", capabilitiesTitle: "à¦•à§à¦¯à¦¾à¦ªà¦¾à¦¬à¦¿à¦²à¦¿à¦Ÿà¦¿", contactTitle: "à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦—", addressLabel: "à¦ à¦¿à¦•à¦¾à¦¨à¦¾", addressVal: "Wuping County, Longyan City, Fujian Province, China", phoneLabel: "à¦«à§‹à¦¨", emailLabel: "à¦‡à¦®à§‡à¦‡à¦²", copyright: "Â© 2026 Wuping Feitian Electronic Technology Company Limited. à¦¸à¦°à§à¦¬à¦¸à§à¦¬à¦¤à§à¦¬ à¦¸à¦‚à¦°à¦•à§à¦·à¦¿à¦¤à¥¤" },
+    footer: { description: "Prototype, low-volume à¦à¦¬à¦‚ high-volume electronics production à¦à¦° à¦œà¦¨à§à¦¯ precision PCB à¦“ PCBA manufacturing partnerà¥¤", aboutTitle: "à¦†à¦®à¦¾à¦¦à§‡à¦° à¦¸à¦®à§à¦ªà¦°à§à¦•à§‡", productsTitle: "à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿà¦¸", capabilitiesTitle: "à¦•à§à¦¯à¦¾à¦ªà¦¾à¦¬à¦¿à¦²à¦¿à¦Ÿà¦¿", contactTitle: "à¦¯à§‹à¦—à¦¾à¦¯à§‹à¦—", addressLabel: "à¦ à¦¿à¦•à¦¾à¦¨à¦¾", addressVal: "Factory: Yanqian Industrial Cluster, Wuping County, Longyan City, Fujian Province, China | Shenzhen: Fenghuang Zhi Gu, Country Garden, Tie Zai Road, Xixiang Street, Baoan District, Shenzhen, China", phoneLabel: "à¦«à§‹à¦¨", emailLabel: "à¦‡à¦®à§‡à¦‡à¦²", copyright: "Â© 2026 Wuping Feitian Electronic Technology Company Limited. à¦¸à¦°à§à¦¬à¦¸à§à¦¬à¦¤à§à¦¬ à¦¸à¦‚à¦°à¦•à§à¦·à¦¿à¦¤à¥¤" },
   },
   de: { navbar: { selectCountry: "Land auswÃ¤hlen", navItems: localizedNavItems.de, theme: { toggle: "Design wechseln", light: "Hell", dark: "Dunkel", system: "System" } }, home: { title: "Willkommen auf unserer Website", description: "WÃ¤hlen Sie ein Land in der Navigation, um die Website-Sprache zu Ã¤ndern.", selectedLanguage: "Aktuelle Sprache" }, footer: { copyright: "Â© 2026 Wuping Feitian Electronic Technology Company Limited. Alle Rechte vorbehalten." } },
   ja: { navbar: { selectCountry: "å›½ã‚’é¸æŠž", navItems: localizedNavItems.ja, theme: { toggle: "ãƒ†ãƒ¼ãƒžåˆ‡æ›¿", light: "ãƒ©ã‚¤ãƒˆ", dark: "ãƒ€ãƒ¼ã‚¯", system: "ã‚·ã‚¹ãƒ†ãƒ " } }, home: { title: "å½“ç¤¾ã‚µã‚¤ãƒˆã¸ã‚ˆã†ã“ã", description: "ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã§å›½ã‚’é¸ã¶ã¨ã€ã‚µã‚¤ãƒˆã®è¨€èªžãŒåˆ‡ã‚Šæ›¿ã‚ã‚Šã¾ã™ã€‚", selectedLanguage: "ç¾åœ¨ã®è¨€èªž" }, footer: { copyright: "Â© 2026 Wuping Feitian Electronic Technology Company Limited. All rights reserved." } },
@@ -754,12 +754,7 @@ const localeOverrides: Record<Exclude<Locale, "en">, PartialDictionary> = {
   af: { navbar: { selectCountry: "Kies land", navigation: "Navigasie", login: "Teken in", theme: { toggle: "Verander tema", light: "Lig", dark: "Donker", system: "Stelsel" } }, home: { title: "Welkom by ons webwerf", description: "Kies 'n land in die navigasie om die webwerf se taal te verander.", selectedLanguage: "Huidige taal" } },
 };
 
-export function getDictionary(locale: Locale): Dictionary {
-  if (locale === defaultLocale) {
-    return sourceDictionary;
-  }
-
-  return mergeDictionary(sourceDictionary, localeOverrides[locale as Exclude<Locale, "en">]);
+export function getDictionary(_locale: Locale): Dictionary {
+  return sourceDictionary;
 }
-
 

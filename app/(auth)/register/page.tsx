@@ -157,9 +157,9 @@ export default function RegisterPage() {
       <div className="mb-8 flex flex-col items-center justify-center text-center">
         <div className="w-20 h-20 sm:w-24 sm:h-24 bg-[#12121A]/80 backdrop-blur-md rounded-3xl border border-fuchsia-500/30 shadow-[0_0_40px_rgba(217,70,239,0.4)] flex items-center justify-center mb-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20" />
-          <Image src="/image/chinaproject.png" alt="FT Logo" width={72} height={72} className="relative z-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] w-[50px] h-[50px] sm:w-[72px] sm:h-[72px]" />
+          <Image src="/image/chinaproject.png" alt="FT PCB Logo" width={72} height={72} className="relative z-10 object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] w-[50px] h-[50px] sm:w-[72px] sm:h-[72px]" />
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 tracking-tight drop-shadow-sm">Sys<span className="text-fuchsia-500">PCB</span></h1>
+        <h1 className="text-3xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 tracking-tight drop-shadow-sm">FT <span className="text-fuchsia-500">PCB</span></h1>
       </div>
 
       <Card className="w-full max-w-2xl border border-white/10 bg-[#12121A]/80 backdrop-blur-xl shadow-2xl relative overflow-hidden rounded-3xl">

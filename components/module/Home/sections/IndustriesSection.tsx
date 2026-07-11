@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 
@@ -35,3 +35,4 @@ export default function IndustriesSection({ data }: { data?: IPage }) {
     </section>
   );
 }
+

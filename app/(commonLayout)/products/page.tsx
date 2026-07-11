@@ -3,7 +3,7 @@ import { ProductService } from "@/services/product.service";
 import { ProductCatalogClient } from "./ProductCatalogClient";
 
 export const metadata = {
-  title: "Products - FT",
+  title: "Products - FT PCB",
   description: "Browse our comprehensive catalog of high-quality PCB and PCBA products.",
 };
 

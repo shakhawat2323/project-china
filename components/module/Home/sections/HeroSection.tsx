@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, CircuitBoard, Cpu, ShieldCheck, Sparkles, Zap } from "lucide-react";
@@ -153,3 +153,4 @@ export default function HeroSection({ data }: { data?: IPage }) {
     </section>
   );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -99,17 +99,17 @@ function validateProduct(form: ProductForm, images: File[], specs: SpecRow[]) {
   const rating = toNumber(form.rating);
   const validSpecs = buildSpecifications(specs);
 
-  if (form.name.trim().length < 3) errors.push("Product name কমপক্ষে 3 character হতে হবে।");
-  if (!form.category.trim()) errors.push("Category select করতে হবে।");
-  if (form.description.trim().length < 20) errors.push("Description কমপক্ষে 20 character লিখুন।");
-  if (price <= 0) errors.push("Price 0-এর বেশি হতে হবে।");
-  if (stock < 0) errors.push("Stock negative হতে পারবে না।");
-  if (minOrderQty < 1) errors.push("Minimum order quantity কমপক্ষে 1 হতে হবে।");
-  if (leadTimeDays < 0) errors.push("Lead time negative হতে পারবে না।");
-  if (rating < 0 || rating > 5) errors.push("Rating 0 থেকে 5-এর মধ্যে হতে হবে।");
-  if (images.length > 5) errors.push("Maximum 5টি product image upload করা যাবে।");
-  if (images.some((file) => file.size > 5 * 1024 * 1024)) errors.push("প্রতিটি image 5MB-এর নিচে হতে হবে।");
-  if (Object.keys(validSpecs).length < 2) errors.push("কমপক্ষে 2টি technical specification দিন।");
+  if (form.name.trim().length < 3) errors.push("Product name à¦•à¦®à¦ªà¦•à§à¦·à§‡ 3 character à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤");
+  if (!form.category.trim()) errors.push("Category select à¦•à¦°à¦¤à§‡ à¦¹à¦¬à§‡à¥¤");
+  if (form.description.trim().length < 20) errors.push("Description à¦•à¦®à¦ªà¦•à§à¦·à§‡ 20 character à¦²à¦¿à¦–à§à¦¨à¥¤");
+  if (price <= 0) errors.push("Price 0-à¦à¦° à¦¬à§‡à¦¶à¦¿ à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤");
+  if (stock < 0) errors.push("Stock negative à¦¹à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡ à¦¨à¦¾à¥¤");
+  if (minOrderQty < 1) errors.push("Minimum order quantity à¦•à¦®à¦ªà¦•à§à¦·à§‡ 1 à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤");
+  if (leadTimeDays < 0) errors.push("Lead time negative à¦¹à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡ à¦¨à¦¾à¥¤");
+  if (rating < 0 || rating > 5) errors.push("Rating 0 à¦¥à§‡à¦•à§‡ 5-à¦à¦° à¦®à¦§à§à¦¯à§‡ à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤");
+  if (images.length > 5) errors.push("Maximum 5à¦Ÿà¦¿ product image upload à¦•à¦°à¦¾ à¦¯à¦¾à¦¬à§‡à¥¤");
+  if (images.some((file) => file.size > 5 * 1024 * 1024)) errors.push("à¦ªà§à¦°à¦¤à¦¿à¦Ÿà¦¿ image 5MB-à¦à¦° à¦¨à¦¿à¦šà§‡ à¦¹à¦¤à§‡ à¦¹à¦¬à§‡à¥¤");
+  if (Object.keys(validSpecs).length < 2) errors.push("à¦•à¦®à¦ªà¦•à§à¦·à§‡ 2à¦Ÿà¦¿ technical specification à¦¦à¦¿à¦¨à¥¤");
 
   return errors;
 }
@@ -210,7 +210,7 @@ export default function ProductsDashboardPage() {
             </div>
             <h1 className="text-3xl font-black text-foreground">Admin Product Creation</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-              Admin এবং Super Admin এখানে professional product তৈরি করবে। Backend route role + permission protected, আর frontend submit-এর আগে validation করে।
+              Admin à¦à¦¬à¦‚ Super Admin à¦à¦–à¦¾à¦¨à§‡ professional product à¦¤à§ˆà¦°à¦¿ à¦•à¦°à¦¬à§‡à¥¤ Backend route role + permission protected, à¦†à¦° frontend submit-à¦à¦° à¦†à¦—à§‡ validation à¦•à¦°à§‡à¥¤
             </p>
           </div>
           <div className="rounded-full border border-border bg-muted px-4 py-2 text-sm font-bold text-muted-foreground">
@@ -226,7 +226,7 @@ export default function ProductsDashboardPage() {
             <div>
               <h2 className="text-xl font-black text-foreground">Access restricted</h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Product create করার permission শুধু Admin এবং Super Admin-এর জন্য। সঠিক account দিয়ে login করুন।
+                Product create à¦•à¦°à¦¾à¦° permission à¦¶à§à¦§à§ Admin à¦à¦¬à¦‚ Super Admin-à¦à¦° à¦œà¦¨à§à¦¯à¥¤ à¦¸à¦ à¦¿à¦• account à¦¦à¦¿à§Ÿà§‡ login à¦•à¦°à§à¦¨à¥¤
               </p>
             </div>
           </CardContent>
@@ -240,7 +240,7 @@ export default function ProductsDashboardPage() {
               <Sparkles className="h-5 w-5 text-primary" />
               Product Information
             </CardTitle>
-            <CardDescription>Customer catalog, checkout, and admin inventory-এর জন্য clean product data দিন।</CardDescription>
+            <CardDescription>Customer catalog, checkout, and admin inventory-à¦à¦° à¦œà¦¨à§à¦¯ clean product data à¦¦à¦¿à¦¨à¥¤</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2">
@@ -327,7 +327,7 @@ export default function ProductsDashboardPage() {
             <div className="flex items-center justify-between rounded-lg border border-border bg-muted/50 p-4">
               <div>
                 <Label>Featured Product</Label>
-                <p className="mt-1 text-xs text-muted-foreground">Homepage/catalog highlight করার জন্য enable করুন।</p>
+                <p className="mt-1 text-xs text-muted-foreground">Homepage/catalog highlight à¦•à¦°à¦¾à¦° à¦œà¦¨à§à¦¯ enable à¦•à¦°à§à¦¨à¥¤</p>
               </div>
               <Switch checked={form.isFeatured} onCheckedChange={(checked) => updateForm("isFeatured", checked)} />
             </div>
@@ -336,7 +336,7 @@ export default function ProductsDashboardPage() {
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <Label>Technical Specifications *</Label>
-                  <p className="mt-1 text-xs text-muted-foreground">Layer, material, thickness, copper weight, finish ইত্যাদি দিন।</p>
+                  <p className="mt-1 text-xs text-muted-foreground">Layer, material, thickness, copper weight, finish à¦‡à¦¤à§à¦¯à¦¾à¦¦à¦¿ à¦¦à¦¿à¦¨à¥¤</p>
                 </div>
                 <Button type="button" variant="outline" size="sm" onClick={addSpecRow}>
                   <Plus className="h-4 w-4" />
@@ -368,7 +368,7 @@ export default function ProductsDashboardPage() {
                 multiple
                 onChange={(event) => setImages(Array.from(event.target.files || []).slice(0, 5))}
               />
-              <p className="text-xs text-muted-foreground">Maximum 5 image, each image under 5MB. Backend Cloudinary upload support আছে।</p>
+              <p className="text-xs text-muted-foreground">Maximum 5 image, each image under 5MB. Backend Cloudinary upload support à¦†à¦›à§‡à¥¤</p>
             </div>
 
             <Button onClick={handleCreateProduct} disabled={loading || !isAdmin} className="h-12 w-full rounded-full text-base font-black">
@@ -382,7 +382,7 @@ export default function ProductsDashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle>Product Preview</CardTitle>
-              <CardDescription>Customer catalog-এ product দেখতে কেমন লাগবে তার quick preview।</CardDescription>
+              <CardDescription>Customer catalog-à¦ product à¦¦à§‡à¦–à¦¤à§‡ à¦•à§‡à¦®à¦¨ à¦²à¦¾à¦—à¦¬à§‡ à¦¤à¦¾à¦° quick previewà¥¤</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="overflow-hidden rounded-lg border border-border bg-background">
@@ -432,12 +432,12 @@ export default function ProductsDashboardPage() {
                 createdProducts.map((product) => (
                   <div key={product.id} className="rounded-lg border border-border p-3">
                     <p className="font-bold text-foreground">{product.name}</p>
-                    <p className="text-xs text-muted-foreground">{product.category} · ${Number(product.price || 0).toFixed(2)}</p>
+                    <p className="text-xs text-muted-foreground">{product.category} Â· ${Number(product.price || 0).toFixed(2)}</p>
                   </div>
                 ))
               ) : (
                 <p className="rounded-lg border border-dashed border-border p-4 text-sm text-muted-foreground">
-                  Product create করলে এখানে response preview দেখা যাবে।
+                  Product create à¦•à¦°à¦²à§‡ à¦à¦–à¦¾à¦¨à§‡ response preview à¦¦à§‡à¦–à¦¾ à¦¯à¦¾à¦¬à§‡à¥¤
                 </p>
               )}
             </CardContent>
@@ -447,3 +447,4 @@ export default function ProductsDashboardPage() {
     </div>
   );
 }
+

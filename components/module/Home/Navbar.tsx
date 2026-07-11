@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ComponentType } from "react";
+import { useState, type ComponentType } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -33,6 +33,7 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -143,159 +144,141 @@ function LanguageSelector() {
 }
 
 function DesktopNavItem({ item, sourceItem }: { item: NavItem; sourceItem: NavItem }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const sectionHref = getNavSectionHref(sourceItem.title);
   const isActive = pathname === sectionHref || pathname.startsWith(`${sectionHref}/`);
 
-  const openMenu = () => {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-    }
-
-    setIsOpen(true);
-  };
-
-  const closeMenu = () => {
-    closeTimer.current = setTimeout(() => setIsOpen(false), 320);
-  };
-
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <div
-        onMouseEnter={openMenu}
-        onMouseLeave={closeMenu}
-        className={`group flex cursor-pointer items-center ${navPillClass(isActive)} px-1`}
-      >
-        <Link href={getNavSectionHref(sourceItem.title)} className="px-3 py-2 pr-1">
-          {item.title}
-        </Link>
-        <DropdownMenuTrigger
-          className="flex items-center py-2 pr-3 outline-none"
-          aria-label={`${item.title} menu`}
-        >
-          <ChevronDown className="h-4 w-4 opacity-70 transition-transform group-hover:rotate-180 group-hover:opacity-100" />
-        </DropdownMenuTrigger>
-      </div>
-
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            type="button"
+            variant="ghost"
+            className={`${navPillClass(isActive)} h-auto gap-1 px-3 py-2`}
+          >
+            {item.title}
+            <ChevronDown className="h-4 w-4 opacity-70" />
+          </Button>
+        }
+      />
       <DropdownMenuContent
         align="start"
-        onMouseEnter={openMenu}
-        onMouseLeave={closeMenu}
-        sideOffset={4}
+        sideOffset={8}
         className="w-72 rounded-2xl border-border/80 bg-card/95 p-2 shadow-premium backdrop-blur-2xl"
       >
-        {item.items.map((sub, index) => (
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>{item.title}</DropdownMenuLabel>
           <DropdownMenuItem
-            key={sub}
-            asChild
-            className="mb-1 cursor-pointer rounded-xl p-0 text-foreground focus:bg-transparent focus:text-foreground"
+            render={
+              <Link
+                href={sectionHref}
+                className="flex w-full items-center rounded-xl px-3 py-2 text-sm font-black text-primary outline-none transition hover:bg-primary/10"
+              />
+            }
           >
-            <Link
-              href={getNavPageHref(sourceItem.title, sourceItem.items[index] ?? sub)}
-              className="flex w-full items-center rounded-xl border border-transparent px-3 py-2.5 text-sm font-semibold text-foreground transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary focus-visible:border-primary/40"
+            {dictionarySafeExploreLabel(item.title)}
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          {item.items.map((sub, index) => (
+            <DropdownMenuItem
+              key={sub}
+              render={
+                <Link
+                  href={getNavPageHref(sourceItem.title, sourceItem.items[index] ?? sub)}
+                  className="flex w-full items-center rounded-xl px-3 py-2.5 text-sm font-semibold text-foreground outline-none transition hover:bg-primary/10 hover:text-primary"
+                />
+              }
             >
               <span className="mr-3 h-1.5 w-1.5 rounded-full bg-primary/70 opacity-70" />
               <span>{sub}</span>
-            </Link>
-          </DropdownMenuItem>
-        ))}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
 
+const productMenuGroups = [
+  {
+    title: "PCB Products",
+    href: "/products?category=PCB%20Fabrication",
+    items: ["Rigid PCB", "Flexible PCB", "Rigid-Flex PCB", "Aluminum PCB", "High Frequency PCB", "HDI PCB"],
+  },
+  {
+    title: "PCBA Products",
+    href: "/products?category=PCBA",
+    items: ["SMT Assembly", "THT Assembly", "Box Build Assembly", "Turnkey Assembly", "Engineering Service"],
+  },
+];
+
+function dictionarySafeExploreLabel(title: string) {
+  return `Explore ${title}`;
+}
+
 function ProductsMegaMenu() {
-  const [isOpen, setIsOpen] = useState(false);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const isActive = pathname === "/products" || pathname.startsWith("/products/");
 
-  const openMenu = () => {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-    }
-    setIsOpen(true);
-  };
-
-  const closeMenu = () => {
-    closeTimer.current = setTimeout(() => setIsOpen(false), 320);
-  };
-
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <div
-        onMouseEnter={openMenu}
-        onMouseLeave={closeMenu}
-        className={`group mx-2 flex cursor-pointer items-center ${navPillClass(isActive)} px-1 font-black`}
-      >
-        <Link href="/products" className="px-4 py-2 pr-1">
-          Products
-        </Link>
-        <DropdownMenuTrigger
-          className="flex items-center py-2 pr-3 outline-none"
-          aria-label="Products menu"
-        >
-          <ChevronDown className="h-4 w-4 opacity-80 transition-transform group-hover:rotate-180" />
-        </DropdownMenuTrigger>
-      </div>
-
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={
+          <Button
+            type="button"
+            variant="ghost"
+            className={`${navPillClass(isActive)} h-auto gap-1 px-3 py-2 font-black`}
+          >
+            Products
+            <ChevronDown className="h-4 w-4 opacity-70" />
+          </Button>
+        }
+      />
       <DropdownMenuContent
         align="start"
-        onMouseEnter={openMenu}
-        onMouseLeave={closeMenu}
-        sideOffset={4}
+        sideOffset={8}
         className="w-[min(760px,calc(100vw-2rem))] rounded-3xl border-border/80 bg-card/95 p-3 text-foreground shadow-premium backdrop-blur-2xl"
       >
-        <div className="mb-3 rounded-2xl border border-border/70 bg-background/70 p-4">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-primary">
-            PCB Product Center
-          </p>
-          <p className="mt-1 text-sm leading-6 text-muted-foreground">
-            Browse PCB products, manufacturing capabilities, and assembly services from one clean menu.
-          </p>
-        </div>
-
+        <DropdownMenuLabel>PCB Product Center</DropdownMenuLabel>
+        <p className="px-1.5 pb-2 text-sm leading-6 text-muted-foreground">
+          Browse PCB products, manufacturing capabilities, and assembly services from one clean menu.
+        </p>
+        <DropdownMenuSeparator />
         <div className="grid gap-3 md:grid-cols-2">
-          {[
-            {
-              title: "PCB Products",
-              href: "/products?category=PCB%20Fabrication",
-              items: ["Rigid PCB", "Flexible PCB", "Rigid-Flex PCB", "Aluminum PCB", "High Frequency PCB", "HDI PCB"],
-            },
-            {
-              title: "PCBA Products",
-              href: "/products?category=PCBA",
-              items: ["SMT Assembly", "THT Assembly", "Box Build Assembly", "Turnkey Assembly", "Engineering Service"],
-            },
-          ].map((group) => (
-            <div key={group.title} className="rounded-2xl border border-border/70 bg-background/55 p-2">
-              <Link
-                href={group.href}
-                className="block rounded-xl border border-transparent px-3 py-2 text-sm font-black text-foreground transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+          {productMenuGroups.map((group) => (
+            <DropdownMenuGroup key={group.title} className="rounded-2xl border border-border/70 bg-background/55 p-2">
+              <DropdownMenuItem
+                render={
+                  <Link
+                    href={group.href}
+                    className="flex w-full rounded-xl px-3 py-2 text-sm font-black text-foreground outline-none transition hover:bg-primary/10 hover:text-primary"
+                  />
+                }
               >
                 {group.title}
-              </Link>
-              <div className="mt-1 grid gap-1">
-                {group.items.map((sub) => (
-                  <Link
-                    key={sub}
-                    href={`/products?category=${encodeURIComponent(group.title === "PCBA Products" ? "PCBA" : sub)}`}
-                    className="rounded-xl border border-transparent px-3 py-2 text-sm font-semibold text-muted-foreground transition-all hover:border-primary/25 hover:bg-primary/10 hover:text-primary"
-                  >
-                    {sub}
-                  </Link>
-                ))}
-              </div>
-            </div>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {group.items.map((sub) => (
+                <DropdownMenuItem
+                  key={sub}
+                  render={
+                    <Link
+                      href={`/products?category=${encodeURIComponent(group.title === "PCBA Products" ? "PCBA" : sub)}`}
+                      className="flex w-full rounded-xl px-3 py-2 text-sm font-semibold text-muted-foreground outline-none transition hover:bg-primary/10 hover:text-primary"
+                    />
+                  }
+                >
+                  {sub}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuGroup>
           ))}
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
-
 function ProductsMobileGroup({
   onNavigate,
 }: {
@@ -520,3 +503,4 @@ export default function Navbar() {
     </header>
   );
 }
+

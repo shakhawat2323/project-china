@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ModeToggle } from "@/components/themes/darkandlight";
@@ -67,3 +67,4 @@ export function SuperAdminHeader() {
     </header>
   );
 }
+

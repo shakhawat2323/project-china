@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { CreditCard, Download, Loader2, RefreshCcw, RotateCcw, Search } from "lucide-react";
@@ -88,8 +88,8 @@ export default function PaymentsDashboardPage() {
             <h1 className="text-3xl font-black text-foreground">Payment Transactions</h1>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
               {isAdmin
-                ? "Admin/Super Admin সব Stripe, PayPal transaction, receipt এবং refund action manage করতে পারবে।"
-                : "Customer নিজের payment history এবং receipt দেখতে পারবে।"}
+                ? "Admin/Super Admin à¦¸à¦¬ Stripe, PayPal transaction, receipt à¦à¦¬à¦‚ refund action manage à¦•à¦°à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¥¤"
+                : "Customer à¦¨à¦¿à¦œà§‡à¦° payment history à¦à¦¬à¦‚ receipt à¦¦à§‡à¦–à¦¤à§‡ à¦ªà¦¾à¦°à¦¬à§‡à¥¤"}
             </p>
           </div>
           <Button onClick={loadTransactions} disabled={loading} className="rounded-full">
@@ -161,3 +161,4 @@ export default function PaymentsDashboardPage() {
     </div>
   );
 }
+

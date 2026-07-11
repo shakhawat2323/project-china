@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Mail, MessageSquare } from "lucide-react";
+import { ArrowRight, Mail, MapPin, MessageSquare } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import VideoPanel from "@/components/module/Home/sections/VideoPanel";
@@ -30,23 +30,43 @@ export default function ContactSection({ data }: { data?: IPage }) {
             </p>
           </div>
           
-          <div className="grid sm:grid-cols-2 gap-6 pt-6 border-t border-gray-800">
+          <div className="grid gap-6 border-t border-gray-800 pt-6 sm:grid-cols-2">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-violet-500/20 bg-violet-500/10">
+                <MapPin className="size-5 text-violet-400" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase text-gray-500">Factory Address</p>
+                <p className="font-medium leading-6 text-white">{data.specifications?.factoryAddress}</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-cyan-500/20 bg-cyan-500/10">
+                <MapPin className="size-5 text-cyan-300" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase text-gray-500">Shenzhen Address</p>
+                <p className="font-medium leading-6 text-white">{data.specifications?.shenzhenAddress}</p>
+              </div>
+            </div>
+
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-500/10 border border-violet-500/20">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-violet-500/20 bg-violet-500/10">
                 <Mail className="size-5 text-violet-400" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase">Email Us</p>
+                <p className="text-xs font-semibold uppercase text-gray-500">Email Us</p>
                 <p className="font-medium text-white">{data.specifications?.email}</p>
               </div>
             </div>
             
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-fuchsia-500/20 bg-fuchsia-500/10">
                 <MessageSquare className="size-5 text-fuchsia-400" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase">Call Us</p>
+                <p className="text-xs font-semibold uppercase text-gray-500">Call Us</p>
                 <p className="font-medium text-white">{data.specifications?.phone}</p>
               </div>
             </div>

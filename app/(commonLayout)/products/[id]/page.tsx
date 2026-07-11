@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
 
   return {
-    title: `${product.name} | FT`,
+    title: `${product.name} | FT PCB`,
     description: product.description || `View details for ${product.name}`,
   };
 }

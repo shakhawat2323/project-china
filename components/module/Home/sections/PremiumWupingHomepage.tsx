@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { ProductCard } from "@/app/(commonLayout)/products/ProductCard";
 import { useDictionary } from "@/components/providers/language-provider";
+import { getPcbYoutubeEmbedUrl } from "@/lib/youtube-videos";
 import type { IProduct } from "@/services/product.service";
 import type { IPage } from "@/services/page.service";
 import GlobalNetworkGlobe from "./GlobalNetworkGlobe";
@@ -148,17 +149,19 @@ function MediaImage({ src, title }: { src: string; title: string }) {
   );
 }
 
-function VideoCard({ title, description }: { title: string; description: string }) {
+function VideoCard({ title, description, index = 0 }: { title: string; description: string; index?: number }) {
+  const videoUrl = getPcbYoutubeEmbedUrl(title, index);
   return (
     <article className="group overflow-hidden rounded-lg border border-border bg-card shadow-sm">
-      <div className="relative aspect-video bg-[#07111f]">
-        <Image src="/image/pcb3.png" alt={title} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-70 transition duration-500 group-hover:scale-105" />
-        <div className="absolute inset-0 bg-primary/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="flex size-14 items-center justify-center rounded-full bg-white text-primary shadow-premium">
-            <Play className="ml-1 h-6 w-6 fill-current" />
-          </span>
-        </div>
+      <div className="aspect-video bg-[#07111f]">
+        <iframe
+          src={videoUrl}
+          title={title}
+          className="h-full w-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
       </div>
       <div className="p-5">
         <h3 className="text-lg font-black text-foreground">{title}</h3>
@@ -211,7 +214,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
                 <div className="aspect-video">
                   <iframe
                     className="h-full w-full"
-                    src="https://www.youtube.com/embed/sR4ps1HVdGU?si=NI26hdln2a7hcu2E"
+                    src={getPcbYoutubeEmbedUrl("company-overview", 1)}
                     title="Wuping Feitian company video"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -236,7 +239,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
       <section className="premium-section bg-background/70">
         <div className="premium-container">
           <SectionTitle eyebrow={sectionCopy.products.eyebrow} title={sectionCopy.products.title} description={sectionCopy.products.description} />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {manufacturingServices.map(([title, description], index) => (
               <article key={title} className="group overflow-hidden rounded-lg border border-border bg-card shadow-sm">
                 <MediaImage src={pcbImages[index % pcbImages.length]} title={title} />
@@ -269,7 +272,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
       <section className="premium-section bg-background/70">
         <div className="premium-container">
           <SectionTitle eyebrow={sectionCopy.hero.eyebrow} title={sectionCopy.hero.title} description={sectionCopy.hero.description} />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {products.length > 0 ? (
               products.slice(0, 6).map((product) => (
                 <ProductCard key={product.id} product={product} />
@@ -301,7 +304,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
           <div className="mt-10 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
             <MediaImage src="/image/pcb2.png" title="PCB production facility" />
             <div className="grid gap-5">
-              <VideoCard title="Factory Production Video" description="A hero-ready space for a high quality factory tour video." />
+              <VideoCard title="Factory Production Video" description="A hero-ready space for a high quality factory tour video." index={2} />
               <MediaImage src="/image/pcb4.png" title="Quality inspection lab" />
             </div>
           </div>
@@ -405,9 +408,9 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
       <section className="premium-section">
         <div className="premium-container">
           <SectionTitle eyebrow={sectionCopy.factory.videoTitle} title={sectionCopy.factory.title} description={sectionCopy.factory.description} />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {videos.map(([title, description]) => (
-              <VideoCard key={title} title={title} description={description} />
+          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {videos.map(([title, description], index) => (
+              <VideoCard key={title} title={title} description={description} index={index} />
             ))}
           </div>
         </div>
@@ -425,10 +428,10 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
               {sectionCopy.contact.description}
             </p>
             <div className="mt-8 space-y-4 text-sm font-bold text-slate-200">
-              <p className="flex items-center gap-3"><Mail className="h-5 w-5 text-cyan-300" /> sales@wupingfeitian.com</p>
-              <p className="flex items-center gap-3"><Phone className="h-5 w-5 text-cyan-300" /> +86 123 4567 8901</p>
+              <p className="flex items-center gap-3"><Mail className="h-5 w-5 text-cyan-300" /> sales@ftpcb.com</p>
+              <p className="flex items-center gap-3"><Phone className="h-5 w-5 text-cyan-300" /> +86 189 2742 6587</p>
               <p className="flex items-center gap-3"><MessageCircle className="h-5 w-5 text-cyan-300" /> WhatsApp support available</p>
-              <p className="flex items-center gap-3"><Building2 className="h-5 w-5 text-cyan-300" /> Wuping, Fujian, China</p>
+              <p className="flex items-center gap-3"><Building2 className="h-5 w-5 text-cyan-300" /> Factory: Yanqian Industrial Cluster, Wuping County, Longyan City, Fujian Province, China</p>
             </div>
           </div>
           <form className="rounded-lg border border-white/15 bg-white/10 p-6 shadow-premium backdrop-blur">
