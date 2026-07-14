@@ -114,7 +114,7 @@ const homepagePages: IPage[] = [
       "Reach the team through the contact page. Backend submission APIs have been removed from this build.",
     images: ["/image/pcb4.png"],
     specifications: {
-      email: "sales@ftpcb.com",
+      email: "ft-osr@feitianpcb.com",
       factoryAddress: "Yanqian Industrial Cluster, Wuping County, Longyan City, Fujian Province, China",
       shenzhenAddress: "Fenghuang Zhi Gu, Country Garden, Tie Zai Road, Xixiang Street, Baoan District, Shenzhen, China",
       phone: "+86 189 2742 6587",

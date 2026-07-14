@@ -30,7 +30,7 @@ import type { IPage } from "@/services/page.service";
 import GlobalNetworkGlobe from "./GlobalNetworkGlobe";
 
 import { Globe } from "@/components/ui/globe"
-import SignalFanBeamAnimation from "../animations/SignalFanBeamAnimation";
+// import SignalFanBeamAnimation from "../animations/SignalFanBeamAnimation";
 const pcbImages = ["/image/pcb1.png", "/image/pcb2.png", "/image/pcb3.png", "/image/pcb4.png"];
 
 const stats = [
@@ -155,7 +155,7 @@ function VideoCard({ title, description, index = 0 }: { title: string; descripti
     <article className="group overflow-hidden rounded-lg border border-border bg-card shadow-sm">
       <div className="aspect-video bg-[#07111f]">
         <iframe
-          src={videoUrl}
+          src="https://youtu.be/NKwhK6o_jHo?si=evv0xuuhHNdnI0IX"
           title={title}
           className="h-full w-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -294,9 +294,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
         </div>
       </section>
 
-      <section className="premium-section">
-        <SignalFanBeamAnimation />
-      </section>
+
 
       <section className="premium-section">
         <div className="premium-container">
@@ -314,10 +312,10 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
 
 
       <section className="relative overflow-hidden py-20">
-  <div className="relative mx-auto h-[520px] max-w-3xl">
-    <Globe />
-  </div>
-</section>
+        <div className="relative mx-auto h-[520px] max-w-3xl">
+          <Globe />
+        </div>
+      </section>
 
       <section className="premium-section">
         <div className="premium-container">
@@ -428,7 +426,7 @@ export default function PremiumWupingHomepage({ products = [] }: { products?: IP
               {sectionCopy.contact.description}
             </p>
             <div className="mt-8 space-y-4 text-sm font-bold text-slate-200">
-              <p className="flex items-center gap-3"><Mail className="h-5 w-5 text-cyan-300" /> sales@ftpcb.com</p>
+              <p className="flex items-center gap-3"><Mail className="h-5 w-5 text-cyan-300" /> ft-osr@feitianpcb.com</p>
               <p className="flex items-center gap-3"><Phone className="h-5 w-5 text-cyan-300" /> +86 189 2742 6587</p>
               <p className="flex items-center gap-3"><MessageCircle className="h-5 w-5 text-cyan-300" /> WhatsApp support available</p>
               <p className="flex items-center gap-3"><Building2 className="h-5 w-5 text-cyan-300" /> Factory: Yanqian Industrial Cluster, Wuping County, Longyan City, Fujian Province, China</p>

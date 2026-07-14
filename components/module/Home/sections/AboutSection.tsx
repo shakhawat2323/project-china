@@ -18,7 +18,7 @@ export default function AboutSection({ data }: { data?: IPage }) {
             title={data.title}
             description={data.content || ""}
           />
-          
+
           <div className="grid grid-cols-3 gap-6 pt-6 border-t border-gray-800">
             {data.specifications?.stats?.map((stat: any, index: number) => (
               <div key={index} className="space-y-2">
@@ -37,13 +37,13 @@ export default function AboutSection({ data }: { data?: IPage }) {
             ))}
           </div>
         </div>
-        
+
         <div className="relative">
-           <div className="absolute -inset-4 bg-gradient-to-tr from-violet-600/20 to-fuchsia-600/20 rounded-[2rem] blur-2xl -z-10" />
-           <VideoPanel
+          <div className="absolute -inset-4 bg-gradient-to-tr from-violet-600/20 to-fuchsia-600/20 rounded-[2rem] blur-2xl -z-10" />
+          <VideoPanel
             title="Inside Our Smart Factory"
             poster={data.images?.[0] || "/image/chinaproject.png"}
-            embedUrl="https://www.youtube.com/embed/sR4ps1HVdGU?si=n965ym_pbjHEYnsn"
+            embedUrl="https://youtu.be/NKwhK6o_jHo?si=evv0xuuhHNdnI0IX"
           />
         </div>
       </div>

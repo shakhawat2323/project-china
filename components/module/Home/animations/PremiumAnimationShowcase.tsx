@@ -1,7 +1,6 @@
 ﻿"use client";
 
 import { Sparkles } from "lucide-react";
-import SignalFanBeamAnimation from "./SignalFanBeamAnimation";
 import ManufacturingTimelineAnimation from "./ManufacturingTimelineAnimation";
 import QuoteCalculatorPulseAnimation from "./QuoteCalculatorPulseAnimation";
 import GerberUploadScannerAnimation from "./GerberUploadScannerAnimation";
@@ -13,7 +12,7 @@ import ProductCardHoverAnimation from "./ProductCardHoverAnimation";
 import NetworkMeshAnimation from "./NetworkMeshAnimation";
 
 const animationCards = [
-  
+
   { title: "Global network mesh", component: <NetworkMeshAnimation /> },
   { title: "Manufacturing timeline", component: <ManufacturingTimelineAnimation />, wide: true },
   { title: "Quote calculator pulse", component: <QuoteCalculatorPulseAnimation /> },

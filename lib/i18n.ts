@@ -544,25 +544,25 @@ export const sourceDictionary: Dictionary = {
     phoneLabel: "Phone",
     phoneVal: "+86 189 2742 6587",
     emailLabel: "Email",
-    emailVal: "sales@ftpcb.com",
+    emailVal: "ft-osr@feitianpcb.com",
     copyright: "Â© 2026 Wuping Feitian Electronic Technology Company Limited. All rights reserved.",
   },
 };
 
 type PartialDictionary = {
   [Key in keyof Dictionary]?: Dictionary[Key] extends Array<unknown>
-    ? Dictionary[Key]
-    : Dictionary[Key] extends object
-      ? PartialDictionaryObject<Dictionary[Key]>
-      : Dictionary[Key];
+  ? Dictionary[Key]
+  : Dictionary[Key] extends object
+  ? PartialDictionaryObject<Dictionary[Key]>
+  : Dictionary[Key];
 };
 
 type PartialDictionaryObject<T> = {
   [Key in keyof T]?: T[Key] extends Array<unknown>
-    ? T[Key]
-    : T[Key] extends object
-      ? PartialDictionaryObject<T[Key]>
-      : T[Key];
+  ? T[Key]
+  : T[Key] extends object
+  ? PartialDictionaryObject<T[Key]>
+  : T[Key];
 };
 
 function mergeDictionary<T extends Record<string, unknown>>(base: T, override?: PartialDictionaryObject<T>): T {

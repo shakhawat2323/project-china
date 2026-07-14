@@ -53,7 +53,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground">Email Us</h4>
-                    <p className="mt-1 text-muted-foreground">sales@ftpcb.com<br />support@ftpcb.com</p>
+                    <p className="mt-1 text-muted-foreground">ft-osr@feitianpcb.com<br />support@ftpcb.com</p>
                   </div>
                 </div>
 
