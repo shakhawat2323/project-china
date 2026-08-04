@@ -1,44 +1,48 @@
-import { Cpu } from "lucide-react";
-import { ProductService } from "@/services/product.service";
-import { ProductCatalogClient } from "./ProductCatalogClient";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
-export const metadata = {
-  title: "Products - FT PCB",
-  description: "Browse our comprehensive catalog of high-quality PCB and PCBA products.",
+export const metadata: Metadata = {
+  title: "Products | FT PCB",
+  description: "Explore products and related information from FT PCB.",
 };
 
-export const dynamic = "force-dynamic";
-
-export default async function ProductsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string }>;
-}) {
-  const resolvedSearchParams = await searchParams;
-  const productsResponse = await ProductService.getProducts();
-  const products = productsResponse?.data || [];
+export default function Page() {
+  const items = [
+  {
+    "title": "PCB Products",
+    "pageSlug": "pcb-products"
+  },
+  {
+    "title": "PCBA Products",
+    "pageSlug": "pcba-products"
+  }
+];
 
   return (
-    <div className="premium-shell min-h-screen pb-24 pt-24">
-      <div className="premium-container">
-        <div className="relative z-10 mb-16 text-center">
-          <div className="absolute inset-x-0 top-0 -z-10 mx-auto h-[300px] max-w-3xl rounded-full bg-primary/10 blur-[120px]" />
-
-          <div className="premium-eyebrow mb-6">
-            <Cpu className="size-4" />
-            Standard Products
-          </div>
-
-          <h1 className="mb-6 text-5xl font-black tracking-[-0.04em] text-foreground md:text-6xl">
-            Explore <span className="premium-gradient-text">Inventory</span>
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Discover our industry-leading printed circuit boards and electronic components, engineered for enterprise reliability.
-          </p>
-        </div>
-
-        <ProductCatalogClient products={products} initialCategory={resolvedSearchParams.category || "all"} />
+    <main className="premium-shell min-h-screen pb-24">
+      <div className="border-b border-border/70 bg-background/70 backdrop-blur-xl">
+        <nav className="premium-container flex items-center gap-2 py-4 text-xs font-semibold text-muted-foreground sm:text-sm">
+          <Link href="/" className="transition hover:text-primary">Home</Link>
+          <ChevronRight className="h-4 w-4" />
+          <span className="text-foreground">Products</span>
+        </nav>
       </div>
-    </div>
+      <div className="premium-container mt-12">
+        <h1 className="text-4xl font-black text-foreground">Products</h1>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {items.map((item) => (
+            <Link 
+              key={item.pageSlug}
+              href={`/${"products"}/${item.pageSlug}`}
+              className="group block rounded-2xl border border-border bg-background p-6 transition hover:border-primary/50 hover:bg-primary/5"
+            >
+              <h2 className="text-xl font-bold text-foreground group-hover:text-primary transition">{item.title}</h2>
+              <p className="mt-2 text-sm text-muted-foreground">Explore information about {item.title.toLowerCase()}.</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }

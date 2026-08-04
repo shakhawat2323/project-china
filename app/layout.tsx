@@ -1,8 +1,7 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/providers/language-provider";
-import GlobalUiTranslator from "@/components/providers/global-ui-translator";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { ThemeProvider } from "@/components/themes/theme-provider";
 import { siteConfig } from "@/lib/site";
@@ -79,7 +78,6 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <GlobalUiTranslator />
               {children}
               <Toaster position="top-right" richColors />
             </ThemeProvider>

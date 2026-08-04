@@ -1,6 +1,8 @@
 import { sourceDictionary } from "@/lib/i18n";
 import { getNavPageHref, getNavSectionHref } from "@/lib/navigation";
 import { siteConfig } from "@/lib/site";
+import fs from "fs";
+import path from "path";
 
 export type CmsFaq = {
   question: string;
@@ -9,6 +11,21 @@ export type CmsFaq = {
 
 export type CmsContentBlock = {
   title: string;
+  description: string;
+};
+
+export type CmsSplitFeature = {
+  title: string;
+  description: string;
+  list: string[];
+  imageSrc: string;
+  imageAlt: string;
+  imagePosition: "left" | "right";
+};
+
+export type CmsStat = {
+  label: string;
+  value: string;
   description: string;
 };
 
@@ -42,7 +59,10 @@ export type CmsPageContent = {
   articleTitle: string;
   article: string[];
   featuredBlocks: CmsContentBlock[];
+  splitFeatures: CmsSplitFeature[];
+  stats: CmsStat[];
   faq: CmsFaq[];
+  intent: string;
   ctaTitle: string;
   ctaDescription: string;
   ctaHref: string;
@@ -60,16 +80,11 @@ export type CmsPageContent = {
 };
 
 const imagePool = [
-  "/image/pcb1.png",
-  "/image/pcb2.png",
-  "/image/pcb3.png",
-  "/image/pcb4.png",
-  "/image/pcb5.png",
-  "/pcbimage/10005.jpg",
-  "/pcbimage/10012.jpg",
-  "/pcbimage/10023.jpg",
-  "/pcbimage/10031.jpg",
-  "/pcbimage/10040.webp",
+  "/image/pcb1.jpg",
+  "/image/pcb2.jpg",
+  "/image/pcb3.jpg",
+  "/image/pcb4.jpg",
+  "/image/pcb5.jpg",
 ];
 
 function slugify(value: string) {
@@ -222,7 +237,35 @@ export function getCmsPageContent(sectionSlug: string, pageSlug: string): CmsPag
   const pageTitle = section.items.find((item) => slugify(item) === pageSlug) ?? titleCaseFromSlug(pageSlug);
   const sectionTitle = section.title;
   const intent = getIntent(sectionTitle, pageTitle);
-  const [featuredSrc, ...gallerySrcs] = pickImages(`${sectionSlug}-${pageSlug}`);
+  const gallerySrcs = pickImages(`${sectionSlug}-${pageSlug}`);
+  
+  // Dynamic Image Logic
+  const custom1 = `/images/categories/${sectionSlug}/${pageSlug}-1.jpg`;
+  const custom2 = `/images/categories/${sectionSlug}/${pageSlug}-2.jpg`;
+  const custom3 = `/images/categories/${sectionSlug}/${pageSlug}-3.jpg`;
+  const customOld = `/images/categories/${sectionSlug}/${pageSlug}.jpg`;
+  
+  const basePath = path.join(process.cwd(), "public");
+  const hasCustom1 = fs.existsSync(path.join(basePath, custom1));
+  const hasCustom2 = fs.existsSync(path.join(basePath, custom2));
+  const hasCustom3 = fs.existsSync(path.join(basePath, custom3));
+  const hasCustomOld = fs.existsSync(path.join(basePath, customOld));
+
+  const featuredSrc = hasCustom1 ? custom1 : (hasCustomOld ? customOld : gallerySrcs[0]);
+  const split1Src = hasCustom1 ? custom1 : (hasCustomOld ? customOld : gallerySrcs[0]);
+  const split2Src = hasCustom2 ? custom2 : gallerySrcs[1];
+
+  const customGallery = [
+    hasCustom1 ? custom1 : null,
+    hasCustom2 ? custom2 : null,
+    hasCustom3 ? custom3 : null,
+    hasCustomOld ? customOld : null,
+  ].filter(Boolean) as string[];
+
+  const finalGallerySrcs = customGallery.length > 0 
+    ? Array.from(new Set([...customGallery, ...gallerySrcs])).slice(0, 4)
+    : gallerySrcs;
+
   const baseKeywords = [
     pageTitle,
     `${pageTitle} PCB`,
@@ -237,15 +280,51 @@ export function getCmsPageContent(sectionSlug: string, pageSlug: string): CmsPag
     pageSlug,
     sectionTitle,
     pageTitle,
+    intent,
     seoTitle: `${pageTitle} | ${sectionTitle} | ${siteConfig.name}`,
     metaDescription: `${pageTitle} guidance from ${siteConfig.name}. Learn process, capabilities, media, FAQs, and next steps for PCB and PCBA manufacturing.`,
     heroEyebrow: sectionTitle,
     heroTitle: `${pageTitle} by ${siteConfig.name}`,
     heroDescription: `A complete premium resource for ${pageTitle.toLowerCase()}, built for engineers, sourcing teams, and electronics companies that need clarity before production.`,
     intro: `This page is dynamically generated from the ${sectionTitle} navigation structure and explains the purpose, value, media, and next step for ${pageTitle}.`,
-    articleTitle: `Complete Guide to ${pageTitle}`,
-    article: buildArticle(sectionTitle, pageTitle, intent),
+    articleTitle: `Understanding ${pageTitle}`,
+    article: [
+      `The production of ${pageTitle.toLowerCase()} requires precise engineering and strict quality control. ${siteConfig.name} ensures that every step from raw material selection to final inspection meets international standards.`,
+      `For engineers and sourcing teams, having a reliable partner for ${pageTitle.toLowerCase()} means fewer delays, reduced costs, and a more predictable supply chain. We focus on design for manufacturability (DFM) to catch potential issues early.`,
+    ],
     featuredBlocks: buildFeaturedBlocks(pageTitle, intent),
+    splitFeatures: [
+      {
+        title: `Advanced Technology for ${pageTitle}`,
+        description: `We utilize industry-leading machinery and processes to ensure the highest quality for your ${pageTitle.toLowerCase()} requirements.`,
+        list: [
+          "State-of-the-art automated equipment",
+          "Stringent quality control protocols",
+          "Experienced engineering support",
+        ],
+        imageSrc: split1Src,
+        imageAlt: `${pageTitle} technology in action`,
+        imagePosition: "left",
+      },
+      {
+        title: `Reliable Supply Chain`,
+        description: `Our streamlined operations and strategic sourcing guarantee that your ${pageTitle.toLowerCase()} orders are fulfilled on time, every time.`,
+        list: [
+          "Global sourcing network",
+          "Predictable lead times",
+          "Scalable production capacity",
+        ],
+        imageSrc: split2Src,
+        imageAlt: `${pageTitle} supply chain overview`,
+        imagePosition: "right",
+      }
+    ],
+    stats: [
+      { label: "On-Time Delivery", value: "99.8%", description: "Consistent and reliable shipping" },
+      { label: "Quality Yield", value: "99.5%", description: "First-pass yield rate" },
+      { label: "Customer Satisfaction", value: "100%", description: "Dedicated support team" },
+      { label: "Years Experience", value: "15+", description: "Industry expertise" },
+    ],
     faq: buildFaq(pageTitle),
     ctaTitle: `Ready to discuss ${pageTitle}?`,
     ctaDescription: `Send your files, questions, or production requirements and the ${siteConfig.name} team can guide the next step.`,
@@ -267,7 +346,7 @@ export function getCmsPageContent(sectionSlug: string, pageSlug: string): CmsPag
       alt: `${pageTitle} PCB manufacturing and electronics production`,
       description: `Use this image as the main banner for ${pageTitle}, showing premium electronics manufacturing context.`,
     },
-    gallery: gallerySrcs.map((src, index) => ({
+    gallery: finalGallerySrcs.map((src, index) => ({
       src,
       title: `${pageTitle} gallery ${index + 1}`,
       caption: `${pageTitle} visual reference ${index + 1}`,

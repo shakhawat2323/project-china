@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 
@@ -22,7 +22,7 @@ export default function IndustriesSection({ data }: { data?: IPage }) {
           {data.specifications?.industries?.map((industry: string, index: number) => (
             <div key={industry} className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-[#12121A] shadow-xl hover:-translate-y-2 transition-all duration-500">
               <div className="relative aspect-[16/9] overflow-hidden">
-                <Image src={data.images?.[index % (data.images?.length || 1)] || "/image/chinaproject.png"} alt={industry} fill sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <Image src={data.images?.[index % (data.images?.length || 1)] || "/images/generated/fallback_hero.png"} alt={industry} fill sizes="(max-width: 1024px) 50vw, 33vw" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               </div>
               <div className="absolute bottom-0 left-0 w-full p-6">

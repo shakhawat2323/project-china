@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import createGlobe, { type COBEOptions } from "cobe"
@@ -159,6 +159,7 @@ export function Globe({
   const pointerInteractionMovement = useRef(0)
   const [overlayPhi, setOverlayPhi] = useState(0)
   const [activeRouteIndex, setActiveRouteIndex] = useState(0)
+  const [mounted, setMounted] = useState(false)
 
   const r = useMotionValue(0)
   const rs = useSpring(r, {
@@ -183,6 +184,7 @@ export function Globe({
   }
 
   useEffect(() => {
+    setMounted(true)
     let animationFrame = 0
     let lastOverlayPaint = 0
 
@@ -281,121 +283,125 @@ export function Globe({
         }
       />
       <div className="pointer-events-none absolute inset-[5%] z-15 rounded-full bg-[radial-gradient(circle_at_34%_26%,rgba(255,255,255,0.18),transparent_24%),linear-gradient(135deg,transparent_48%,rgba(2,6,23,0.28)_82%)] mix-blend-screen" />
-      <svg
-        className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible"
-        viewBox="0 0 100 100"
-        aria-hidden="true"
-      >
-        <defs>
-          <linearGradient id="globeNetworkRoute" x1="0" x2="1" y1="0" y2="1">
-            <stop stopColor="#67e8f9" stopOpacity="0.18" />
-            <stop offset="0.42" stopColor="#22d3ee" stopOpacity="1" />
-            <stop offset="1" stopColor="#34d399" stopOpacity="0.24" />
-          </linearGradient>
-          <filter id="globeRouteGlow" x="-35%" y="-35%" width="170%" height="170%">
-            <feGaussianBlur stdDeviation="0.85" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        {NETWORK_ROUTES.map(([fromCode, toCode], index) => {
-          const from = countriesByCode.get(fromCode)
-          const to = countriesByCode.get(toCode)
-          if (!from || !to || !from.visible || !to.visible) return null
-
-          const isActive = index === activeRouteIndex
-          const path = routePath(from, to)
-
-          return (
-            <g key={`${fromCode}-${toCode}`} opacity={isActive ? 1 : 0.34}>
-              <motion.path
-                d={path}
-                fill="none"
-                stroke="url(#globeNetworkRoute)"
-                strokeDasharray={isActive ? "1.8 2.4" : "1.2 3"}
-                strokeLinecap="round"
-                strokeWidth={isActive ? 0.72 : 0.3}
-                filter={isActive ? "url(#globeRouteGlow)" : undefined}
-                initial={false}
-                animate={{ strokeDashoffset: [0, -24] }}
-                transition={{
-                  duration: isActive ? 0.85 : 1.7,
-                  ease: "linear",
-                  repeat: Infinity,
-                }}
-              />
-              {isActive
-                ? [0, 0.34, 0.68].map((delay) => (
-                    <circle
-                      key={delay}
-                      r="0.82"
-                      fill="#ecfeff"
-                      stroke="#22d3ee"
-                      strokeWidth="0.32"
-                      filter="url(#globeRouteGlow)"
-                    >
-                      <animateMotion
-                        begin={`${delay}s`}
-                        dur="1.15s"
-                        repeatCount="indefinite"
-                        path={path}
-                      />
-                    </circle>
-                  ))
-                : null}
-            </g>
-          )
-        })}
-      </svg>
-
-      <div className="pointer-events-none absolute inset-0 z-30">
-        {projectedCountries.map((country, index) => {
-          const isActiveCountry =
-            country.code === activeFrom?.code || country.code === activeTo?.code
-          const isHub = country.code === "CN"
-
-          const Flag = country.flag
-
-          return (
-            <motion.div
-              key={country.code}
-              className={cn(
-                "absolute flex min-w-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-black text-white shadow-[0_12px_34px_rgba(2,6,23,0.38)] backdrop-blur-xl",
-                "border-white/20 bg-slate-950/72 ring-1 ring-cyan-100/10",
-                isActiveCountry && "border-cyan-200/70 bg-cyan-950/82 ring-cyan-200/35",
-                isHub && "border-emerald-200/80 bg-emerald-500 text-slate-950 ring-emerald-100/40"
-              )}
-              initial={{ opacity: 0, scale: 0.78 }}
-              animate={{
-                opacity: country.visible ? (isActiveCountry || isHub ? 1 : 0.72) : 0,
-                scale: country.visible ? (isActiveCountry || isHub ? 1.08 : 0.9) : 0.7,
-                x: "-50%",
-                y: "-50%",
-              }}
-              transition={{ delay: index * 0.035, duration: 0.26 }}
-              style={{
-                left: `${country.x}%`,
-                top: `${country.y}%`,
-                zIndex: Math.round(country.z * 100),
-              }}
-            >
-              <span className="grid h-5 w-5 overflow-hidden rounded-full bg-white p-0.5 shadow-inner">
-                <Flag className="h-full w-full rounded-full object-cover" />
-              </span>
-              <span
-                className={cn(
-                  "max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 sm:max-w-0",
-                  (isActiveCountry || isHub) && "max-w-24 opacity-100 sm:max-w-28"
-                )}
-              >
-                {country.name}
-              </span>
-            </motion.div>
-          )
-        })}
-      </div>
+      {mounted && (
+        <>
+          <svg
+            className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible"
+            viewBox="0 0 100 100"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="globeNetworkRoute" x1="0" x2="1" y1="0" y2="1">
+                <stop stopColor="#67e8f9" stopOpacity="0.18" />
+                <stop offset="0.42" stopColor="#22d3ee" stopOpacity="1" />
+                <stop offset="1" stopColor="#34d399" stopOpacity="0.24" />
+              </linearGradient>
+              <filter id="globeRouteGlow" x="-35%" y="-35%" width="170%" height="170%">
+                <feGaussianBlur stdDeviation="0.85" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            {NETWORK_ROUTES.map(([fromCode, toCode], index) => {
+              const from = countriesByCode.get(fromCode)
+              const to = countriesByCode.get(toCode)
+              if (!from || !to || !from.visible || !to.visible) return null
+    
+              const isActive = index === activeRouteIndex
+              const path = routePath(from, to)
+    
+              return (
+                <g key={`${fromCode}-${toCode}`} opacity={isActive ? 1 : 0.34}>
+                  <motion.path
+                    d={path}
+                    fill="none"
+                    stroke="url(#globeNetworkRoute)"
+                    strokeDasharray={isActive ? "1.8 2.4" : "1.2 3"}
+                    strokeLinecap="round"
+                    strokeWidth={isActive ? 0.72 : 0.3}
+                    filter={isActive ? "url(#globeRouteGlow)" : undefined}
+                    initial={false}
+                    animate={{ strokeDashoffset: [0, -24] }}
+                    transition={{
+                      duration: isActive ? 0.85 : 1.7,
+                      ease: "linear",
+                      repeat: Infinity,
+                    }}
+                  />
+                  {isActive
+                    ? [0, 0.34, 0.68].map((delay) => (
+                        <circle
+                          key={delay}
+                          r="0.82"
+                          fill="#ecfeff"
+                          stroke="#22d3ee"
+                          strokeWidth="0.32"
+                          filter="url(#globeRouteGlow)"
+                        >
+                          <animateMotion
+                            begin={`${delay}s`}
+                            dur="1.15s"
+                            repeatCount="indefinite"
+                            path={path}
+                          />
+                        </circle>
+                      ))
+                    : null}
+                </g>
+              )
+            })}
+          </svg>
+    
+          <div className="pointer-events-none absolute inset-0 z-30">
+            {projectedCountries.map((country, index) => {
+              const isActiveCountry =
+                country.code === activeFrom?.code || country.code === activeTo?.code
+              const isHub = country.code === "CN"
+    
+              const Flag = country.flag
+    
+              return (
+                <motion.div
+                  key={country.code}
+                  className={cn(
+                    "absolute flex min-w-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-black text-white shadow-[0_12px_34px_rgba(2,6,23,0.38)] backdrop-blur-xl",
+                    "border-white/20 bg-slate-950/72 ring-1 ring-cyan-100/10",
+                    isActiveCountry && "border-cyan-200/70 bg-cyan-950/82 ring-cyan-200/35",
+                    isHub && "border-emerald-200/80 bg-emerald-500 text-slate-950 ring-emerald-100/40"
+                  )}
+                  initial={{ opacity: 0, scale: 0.78 }}
+                  animate={{
+                    opacity: country.visible ? (isActiveCountry || isHub ? 1 : 0.72) : 0,
+                    scale: country.visible ? (isActiveCountry || isHub ? 1.08 : 0.9) : 0.7,
+                    x: "-50%",
+                    y: "-50%",
+                  }}
+                  transition={{ delay: index * 0.035, duration: 0.26 }}
+                  style={{
+                    left: `${country.x}%`,
+                    top: `${country.y}%`,
+                    zIndex: Math.round(country.z * 100),
+                  }}
+                >
+                  <span className="grid h-5 w-5 overflow-hidden rounded-full bg-white p-0.5 shadow-inner">
+                    <Flag className="h-full w-full rounded-full object-cover" />
+                  </span>
+                  <span
+                    className={cn(
+                      "max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 sm:max-w-0",
+                      (isActiveCountry || isHub) && "max-w-24 opacity-100 sm:max-w-28"
+                    )}
+                  >
+                    {country.name}
+                  </span>
+                </motion.div>
+              )
+            })}
+          </div>
+        </>
+      )}
 
       <AnimatePresence mode="wait">
         {activeFrom && activeTo ? (

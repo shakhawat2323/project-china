@@ -22,7 +22,7 @@ export default function FactorySection({ data }: { data?: IPage }) {
         
         <div className="mt-16 grid gap-4 md:grid-cols-4">
           <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-gray-800 md:col-span-2 md:row-span-2 shadow-2xl">
-            <Image src={data.images?.[0] || "/image/chinaproject.png"} alt="Factory showcase" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+            <Image src={data.images?.[0] || "/images/generated/fallback_hero.png"} alt="Factory showcase" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
           
@@ -35,7 +35,7 @@ export default function FactorySection({ data }: { data?: IPage }) {
         </div>
 
         <div className="mt-12 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
-          <VideoPanel title="Virtual Factory Tour" poster={data.images?.[5] || "/image/chinaproject.png"} />
+          <VideoPanel title="Virtual Factory Tour" poster={data.images?.[5] || "/images/generated/fallback_hero.png"} />
         </div>
       </div>
     </section>
