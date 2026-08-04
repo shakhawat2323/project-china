@@ -121,11 +121,10 @@ function LanguageSelector() {
                 key={country.countryCode}
                 type="button"
                 onClick={() => setSelectedCountry(country)}
-                className={`flex items-center gap-3 rounded-xl border px-3 py-2 text-left transition-all ${
-                  active
-                    ? "border-primary bg-primary/10 text-foreground"
-                    : "border-border/70 bg-background/70 hover:border-primary/40 hover:bg-muted"
-                }`}
+                className={`flex items-center gap-3 rounded-xl border px-3 py-2 text-left transition-all ${active
+                  ? "border-primary bg-primary/10 text-foreground"
+                  : "border-border/70 bg-background/70 hover:border-primary/40 hover:bg-muted"
+                  }`}
               >
                 <CountryFlag country={country} className="h-5 w-7 rounded-sm" />
                 <span className="min-w-0">
@@ -396,7 +395,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-4 py-3">
           <Link href="/" className="flex min-w-0 items-center gap-3">
             <Image
-              src="/image/chinaproject.png"
+              src="/images/chinaproject.png"
               alt={dictionary.navbar.logoAlt}
               width={72}
               height={72}
