@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { apiRequest } from "./api-client";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://project-china-bakend.onrender.com/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://project-china-bakend.vercel.app/api/v1";
 
 export interface IProduct {
   id: string;
