@@ -26,7 +26,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ user, isAuthenticated: true, isLoading: false });
   },
   logout: async () => {
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://project-china-bakend.onrender.com/api/v1";
     await fetch(`${API_BASE_URL}/auth/logout`, {
       method: "POST",
       credentials: "include",
@@ -34,7 +34,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ user: null, isAuthenticated: false, isLoading: false });
   },
   checkAuth: async () => {
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/v1";
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://project-china-bakend.onrender.com/api/v1";
     try {
       const response = await fetch(`${API_BASE_URL}/auth/me`, {
         credentials: "include",
