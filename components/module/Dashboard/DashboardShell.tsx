@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -180,7 +180,9 @@ export default function DashboardShell({ children }: { children: React.ReactNode
 
   useEffect(() => {
     if (isLoading) return;
-    if (!user) router.replace("/login");
+    if (!user) {
+      router.replace(`/login?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`);
+    }
   }, [isLoading, router, user]);
 
   if (isLoading) {

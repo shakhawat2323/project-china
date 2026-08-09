@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -90,7 +90,7 @@ export default function CheckoutPage() {
   const handlePayNow = async () => {
     if (!user) {
       toast.error("Please login before placing an order.");
-      router.push("/login");
+      router.push(`/login?redirect=${encodeURIComponent(window.location.pathname + window.location.search)}`);
       return;
     }
 

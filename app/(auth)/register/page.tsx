@@ -138,8 +138,8 @@ export default function RegisterPage() {
         phone: fullPhone,
         address,
       });
-      toast.success("Registration successful. Please verify your email OTP.");
-      router.push(`/verify-email?email=${encodeURIComponent(trimmedEmail)}`);
+      toast.success("Registration successful. Please log in.");
+      router.push(`/login`);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Failed to process registration.";
       setErrors({ server: message });

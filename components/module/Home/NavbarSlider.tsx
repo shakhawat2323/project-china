@@ -10,27 +10,27 @@ import { GerberService } from "@/services/gerber.service";
 
 const sliderImages = [
   {
-    src: "/image/pcb1.png",
+    src: "/images/generated/pcb1.png",
     alt: "PCB manufacturing showcase 1",
   },
   {
-    src: "/image/pcb2.png",
+    src: "/images/generated/pcb2.png",
     alt: "PCB manufacturing showcase 2",
   },
   {
-    src: "/image/pcb3.png",
+    src: "/images/generated/pcb3.png",
     alt: "PCB manufacturing showcase 3",
   },
   {
-    src: "/image/pcb4.png",
+    src: "/images/generated/pcb4.png",
     alt: "PCB manufacturing showcase 4",
   },
   {
-    src: "/image/pcb5.png",
+    src: "/images/generated/smt_assembly.png",
     alt: "PCB manufacturing showcase 5",
   },
   {
-    src: "/image/10039.jpeg",
+    src: "/images/generated/hdi_pcb.png",
     alt: "PCB manufacturing showcase 6",
   },
 ];

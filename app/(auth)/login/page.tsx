@@ -32,7 +32,9 @@ export default function LoginPage() {
       const user = await AuthService.login(formData);
       login(user);
       toast.success("Login successful. Welcome back.");
-      router.replace(getRoleDashboardPath(user.role));
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get("redirect") || "/";
+      router.replace(redirect);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unable to sign in. Please try again.";
       setErrorMsg(message);
